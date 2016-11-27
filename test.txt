@@ -3,6 +3,8 @@ git config --global user.name "litao"
 
 git add --all  提交到所有到本地仓库
 git commit -m "新建test"  为本次提交说明
+git push origin master 提交代码到远程仓库
+
 git pull 从远程仓库更新代码
 git stash 暂存修改
 git stash pop 释放暂存修改
