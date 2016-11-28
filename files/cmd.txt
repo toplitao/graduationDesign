@@ -11,3 +11,5 @@ git stash pop 释放暂存修改
 
 php -S 0.0.0.0:端口 -t 发布目录
 
+composer install 安装composer依赖
+
