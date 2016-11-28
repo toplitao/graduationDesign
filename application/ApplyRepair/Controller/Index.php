@@ -1,8 +1,8 @@
 <?php
 namespace app\applyRepair\controller;
 
-use \think\Request;
-use \think\View;
+use think\Request;
+use think\View;
 use think\Db;
 
 class Index
