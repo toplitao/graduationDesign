@@ -1,6 +1,10 @@
-composer install 安装
+composer install 安装依赖
 
 在application目录下，database.php-template 复制一份 重命名为database.php
 配置database.php
 
 public/media 为资源目录
+
+files/repaircenter.sql 为数据库文件
+数据库如有修改请在群里告知，由一人统一修改数据库然后导出文件，覆盖repaircenter.sql，然后上传仓库
+最后其他人更新代码，导入repaircenter.sql到数据库
