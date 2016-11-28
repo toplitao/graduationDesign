@@ -16,6 +16,10 @@ files/repaircenter.sql:为数据库文件
 
 命名规则：
 由于要快速开发，所以使用默认的路由类型
-文件夹和文件每个单词首字母大写 eg:ApplyRepair（控制器文件名只首字母大写 eg:Applyrepair，系统要求）
+文件夹和部分文件驼峰法（首字母大写） eg:ApplyRepair   
+控制器文件名只首字母大写（系统要求） eg:Applyrepair
 类名每个单词首字母大写 eg:ApplyRepair
 方法名下划线命名 eg:write_applyrepair
+
+bootstarp3引入：
+eg: <link rel="stylesheet" href="{$Think.config.template.APP_URL}/bootstrap-3.3.0/dist/css/bootstrap.min.css">

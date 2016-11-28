@@ -1,8 +1,10 @@
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="{$Think.config.template.APP_URL}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+    </head>
     <body>
         <form action="http://localhost/web/applyrepair/create_applyrepair" method="post">
-            产品型号<input type="text" name="goodsType">
+            产品型号<input type="text" name="goodsType" value="{$Think.env.APP_URL}">
             购买时间<input type="datetime">
             具体问题<textarea rows="5" cols="4"></textarea>
             姓名<input type="text">
