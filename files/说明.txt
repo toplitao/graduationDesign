@@ -1,0 +1,6 @@
+composer install 安装
+
+在application目录下，database.php-template 复制一份 重命名为database.php
+配置database.php
+
+public/media 为资源目录
