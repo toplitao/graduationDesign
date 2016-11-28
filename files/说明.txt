@@ -1,14 +1,21 @@
 composer install 安装依赖
 
+文件结构：
+application/Admin:后台管理模块
+application/Web:用户页面模块（修改或增加控制器结构的时候，重新发布一下PHP，不然会找不到控制器）
+public/media：资源目录
+files/repaircenter.sql:为数据库文件
+
+数据库文件配置:
 在application目录下，database.php-template 复制一份 重命名为database.php
 配置database.php
 
-public/media 为资源目录
-
-files/repaircenter.sql 为数据库文件
+数据库:
 数据库如有修改请在群里告知，由一人统一修改数据库然后导出文件，覆盖repaircenter.sql，然后上传仓库
 最后其他人更新代码，导入repaircenter.sql到数据库
 
-修改或增加控制器结构的时候，重新发布一下PHP，不然会找不到控制器
-
-命名规则：由于要快速开发，所以使用默认的路由类型，文件夹和文件同意首字母大写，方法名下划线命名
+命名规则：
+由于要快速开发，所以使用默认的路由类型
+文件夹和文件每个单词首字母大写 eg:ApplyRepair（控制器文件名只首字母大写 eg:Applyrepair，系统要求）
+类名每个单词首字母大写 eg:ApplyRepair
+方法名下划线命名 eg:write_applyrepair

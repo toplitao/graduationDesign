@@ -1,11 +1,11 @@
 <?php
-namespace app\applyRepair\controller;
+namespace app\Web\controller;
 
 use think\Request;
 use think\View;
 use think\Db;
 
-class Index
+class ApplyRepair
 {
     private $view;
     private $request;
@@ -14,7 +14,7 @@ class Index
         $this->request=Request::instance();
     }
 
-    public function write_applyrepair()//方法访问路径 http://localhost/applyrepair/index/write_applyrepair
+    public function write_applyrepair()//方法访问路径 http://localhost/web/applyrepair/write_applyrepair
     {
         return $this->view->fetch('WriteApplyrepair');
     }
