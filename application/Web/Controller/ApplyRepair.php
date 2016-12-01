@@ -58,11 +58,10 @@ class ApplyRepair
     }
     //用户评价
     public function create_apply_feedback() {
-        $oid = $_GET['oid'];
         $data=$this->request->param();
         if($id=db('user_feedback')->insertGetId($data)){
-           if(db('applyrepair')->where('id',$oid)->setField('status',7)) {//把维修单状态改为维修完成
-                return $this->view->fetch('SuccessDeleteApplyrepair');
+           if(db('applyrepair')->where('id',$data['oid'])->setField('status',7)) {//把维修单状态改为维修完成
+                return $this->view->fetch('SuccessSelectApplyrepair');
             }
         }
     }
