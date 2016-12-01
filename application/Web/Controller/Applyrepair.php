@@ -48,5 +48,13 @@ class ApplyRepair
         $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
         return $this->view->fetch('SuccessUpdateApplyrepair',['id'=>$data['id']]);
     }
+     //确认维修完成
+    public function confirm_apply_repair() {
+        $data=$this->request->param();
+        if(db('applyrepair')->where('id',$data['id'])->setField('status',6)) {//把维修单状态改为待评价
+             return $this->view->fetch('SuccessDeleteApplyrepair');
+        }
+
+    }
 
 }
