@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-11-27 11:42:39
+-- Generation Time: 2016-12-01 04:36:06
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `applyrepair` (
   `telNumber` varchar(20) CHARACTER SET utf8 DEFAULT NULL COMMENT '电话',
   `address` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '地址',
   `picture` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '图片地址',
-  `status` int(10) DEFAULT NULL COMMENT '状态',
+  `status` int(10) DEFAULT NULL COMMENT '状态：1：待确认；2：待寄运；3：待确认收货；4：确认修理；5：修理成功返货中；6：待评价；7维修完成',
   `orderNumber` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '运单号',
   `backNumber` varchar(30) DEFAULT NULL COMMENT '返单号',
   PRIMARY KEY (`id`)
@@ -80,6 +80,20 @@ CREATE TABLE IF NOT EXISTS `repairperson` (
   `repairAddress` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '驻点',
   `status` int(10) DEFAULT NULL COMMENT '状态',
   `aid` int(10) DEFAULT NULL COMMENT '表applyRepair的id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user_feedback`
+--
+
+CREATE TABLE IF NOT EXISTS `user_feedback` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL COMMENT '用户id',
+  `note` text CHARACTER SET utf8 COMMENT '评价内容',
+  `order_id` int(10) DEFAULT NULL COMMENT '订单id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

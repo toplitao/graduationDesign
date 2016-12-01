@@ -129,7 +129,7 @@ return [
         // 标签库标签结束标记
         'taglib_end'   => '}',
         // 资源路径
-        'APP_URL'      => 'http://localhost',
+        'APP_URL'      => '',
     ],
 
     // 视图输出字符串内容替换
