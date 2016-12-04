@@ -1,5 +1,5 @@
-git config --global user.email "724062586@qq.com"
-git config --global user.name "litao"
+﻿git config --global user.email "312785362@qq.com"
+git config --global user.name "leanerssl"
 
 git add --all  提交到所有到本地仓库
 git commit -m "新建test"  为本次提交说明
