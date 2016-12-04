@@ -26,4 +26,4 @@ files/repaircenter.sql:为数据库文件
 方法名下划线命名 eg:write_apply_repair
 
 bootstarp3引入：
-eg: <link rel="stylesheet" href="{$Think.config.template.APP_URL}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+eg: <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
