@@ -13,11 +13,11 @@
 {block name="left"}{/block}
 
 {block name="main"}
-     <form action="#" method="post" id="fittingsAdd">
-     	<div>配件名：<input type="text"/></div>
-     	<div>数量：<input type="number"/></div>
+     <form method="post" id="fittingsAdd">
+     	<div>配件名：<input type="text" name="fittingsName"/></div>
+     	<div>数量：<input type="number" name="number"/></div>
      	<div>
-     		<input type="button" value="确定"/>
+     		<input type="button" value="确定" id="do_add_fitting"/>
      	</div>
      </form>
 {/block}

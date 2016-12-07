@@ -14,7 +14,7 @@
 
 {block name="main"}
      <table>
-     	<a href="/index.php/Admin/Fittings_admin/FittingsAdd">新增</a>
+     	<button id="add_fitting">新增</button>
      	<thead>
      		<tr>
      			<th>ID</th>
@@ -24,20 +24,19 @@
      		</tr>
      	</thead>
      	<tbody>
-     		<tr>
-     			<?php if(!empty($data)) { ?>
-	     			<?php foreach($data as $key => $value) {?>
-	     			<td>{$value.id}</td>
-	     			<td>{$value.fittingsName}</td>
-	     			<td>{$value.number}</td>
-	     			<td><a href="/index.php/Admin/Fittings_admin/FittingsEdit/id/{$value.id}">编辑</a><a href="/index.php/Admin/Fittings_admin/FittingsDel/id/{$value.id}">删除</a></td>
-	     			<?php }?>
-     		    <?php }?>
-     		</tr>
+     		<?php if(!empty($data)) { ?>
+	     		<?php foreach($data as $key => $value) {?>
+		     		<tr>
+		     			<td>{$value.id}</td>
+		     			<td>{$value.fittingsName}</td>
+		     			<td>{$value.number}</td>
+		     			<td><a edit_id="{$value.id}" class="edit_fitting">编辑</a><a del_id="{$value.id}" class="del_fitting">删除</a></td>
+		     		</tr>
+	     		<?php }?>
+     		<?php }?>
      	</tbody>
      </table>
 {/block}
-
 {block name="right"}
  最新资讯：
 {/block}

@@ -6,6 +6,8 @@
     <script src="{$Request.domain}/bootstrap-3.3.0/dist/jquery/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="/js/layer_dialog.js"></script>
+    <script src="/layer-v3.0.1/layer/layer.js"></script>
 <title>{block name="title"}{/block}</title>
 </head>
 <body>
@@ -15,9 +17,6 @@
 {block name="right"}右边分栏{/block}
 {block name="footer"}底部{/block}
 </body>
-<script>
-	var urlArr = {
-		              'ajax_add_fittings':'/index.php/Admin/Fittings_admin/FittingsAdd';
-				}
-</script>
+<script src="/js/fittings.js"></script>
+<script src="/js/url.js"></script>
 </html>
