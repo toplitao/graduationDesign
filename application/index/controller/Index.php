@@ -2,6 +2,7 @@
 namespace app\index\Controller;
 use think\View;
 use think\DB;
+use think\Url;
 use think\Session;
 use think\Request;
 use think\Controller;
@@ -23,10 +24,9 @@ class Index extends Controller
         $user=DB('user')->where('username',$data['username'])
         ->where('password',$data['password'])
         ->find();
-        print_r($user);
         if(!empty($user)){
             Session::set('user_id',$user['id']);
-            $this->redirect($this->request->domain.'/web/apply_repair/write_apply_repair');
+            $this->redirect(Url::build('/web/apply_repair/write_apply_repair','',false));
         }
     }
 }
