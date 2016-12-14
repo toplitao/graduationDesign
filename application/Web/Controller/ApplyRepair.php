@@ -4,16 +4,10 @@ namespace app\Web\Controller;
 use think\Request;
 use think\View;
 use think\Db;
+use app\BaseController\CommonBase;
 
-class ApplyRepair
+class ApplyRepair extends CommonBase
 {
-    private $view;
-    private $request;
-    public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
-    }
-
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         return $this->view->fetch('WriteApplyrepair');
@@ -22,7 +16,7 @@ class ApplyRepair
     public function create_apply_repair()
     {
         $data=$this->request->param();
-        if($id=db('applyrepair')->insertGetId($data)){ //添加并返回新增主键       
+        if($id=db('applyrepair')->insertGetId($data)){ //添加并返回新增主键
             return $this->view->fetch('SuccessCreateApplyrepair',['id'=>$id]);
         }
     }
