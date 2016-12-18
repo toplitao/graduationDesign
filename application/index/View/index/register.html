@@ -1,0 +1,56 @@
+{extend name="base" /}
+
+{block name="js_css"}{/block}
+
+{block name="title"}
+{__block__}
+注册
+{/block}
+
+
+{block name="content"}
+<div class="container">
+    <form class="form-horizontal"  role="form">
+        <div class="form-group">
+             <label class="col-md-3">账号类型：</label>
+             <div class="col-md-9">
+                 <label class="radio-inline">
+                     <input type="radio" name="usertype" id="usertypeOption1" value="1" checked> 普通用户
+                 </label>
+                 <label class="radio-inline">
+                     <input type="radio" name="usertype" id="usertypeOption2" value="2"> 维修人员
+                 </label>
+             </div>    
+        </div>    
+        <div class="form-group">
+            <label for="forusername" class="col-md-3">用户名：</label>
+            <div class="col-md-9">
+                 <input type="username" class="form-control" id="username" placeholder="请输入6-12位数字或字母">
+            </div>    
+        </div>
+        <div class="form-group">
+            <label for="forpassword" class="col-md-3">密码</label>
+            <div class="col-md-9">
+                 <input type="password" class="form-control" id="password" placeholder="请输入6-12位数字或字母">
+            </div>    
+        </div>
+        <div class="form-group">
+            <label for="forrepassword" class="col-md-3">确认密码</label>
+            <div class="col-md-9">
+                 <input type="password" class="form-control" id="repassword" placeholder="请输入6-12位数字或字母">
+            </div>    
+        </div>
+        <div class="form-group">
+            <label for="forphone" class="col-md-3">联系电话</label>
+            <div class="col-md-9">
+                 <input type="number" class="form-control" id="phone" placeholder="请输入有效的联系电话">
+            </div>    
+        </div>
+        <div>
+            <label class="control-label">Select File</label>
+            <input id="input-1" type="file" class="file">
+        </div>    
+        <button type="button" class="btn btn-primary btn-block"/>注册
+    </form>    
+</div>
+{/block}

@@ -21,12 +21,20 @@ class Index extends Controller
     }
     public function login(){
         $data=$this->request->param();
+        $data['password'] = md5($data['password']);
         $user=DB('user')->where('username',$data['username'])
         ->where('password',$data['password'])
         ->find();
         if(!empty($user)){
             Session::set('uid',$user['id']);
-            $this->redirect(Url::build('/web/apply_repair/write_apply_repair','',false));
+            if($user['level'] == 1){
+                $url = '/web/apply_repair/write_apply_repair';
+            }else{
+                $url = '/admin/system_admin/admin_index';
+            }
+            $this->redirect(Url::build($url,'',false));
+        }else{
+            echo "<script>alert('用户名或账号错误');</script>";
         }
     }
 }
