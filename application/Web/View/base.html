@@ -7,7 +7,7 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="{$Request.domain}/css/index.css">
+    <link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
     {block name="js_css"}{/block}
 <title>{block name="title"}{/block}</title>
 </head>
@@ -23,10 +23,12 @@
             </ul>
         </div>
     </div>
-
-{block name="main"}主内容{/block}
-
-{block name="footer"}底部{/block}
+ <div class="main">
+    {block name="main"}主内容{/block}
+ </div>
+ <div class="footer">
+    {block name="footer"}底部{/block}
+ </div>
 </body>
 <script>
 </script>
