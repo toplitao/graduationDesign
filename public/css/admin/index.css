@@ -1,0 +1,21 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
+.row{
+    background-color:gray;
+    height:70px;
+}
+.row h2 {
+    margin-left: 15%;
+}
+.left{
+    margin-top: 2%;
+    text-align: center;
+}
+.left ul li{
+    text-align: center;
+    margin-top: 15px;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+}

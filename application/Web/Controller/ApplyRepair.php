@@ -10,7 +10,8 @@ class ApplyRepair extends CommonBase
 {
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
-        return $this->view->fetch('WriteApplyrepair');
+        $address_info=db('linkaddress')->select();
+        return $this->view->fetch('WriteApplyrepair',['address'=>$address_info]);
     }
 
     public function insert_apply_repair() {
