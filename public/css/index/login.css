@@ -24,3 +24,9 @@ a:hover{color:#bd0a01;text-decoration:underline;}
 .admin_copyright{color:#585858;margin-top:10px;font-family:Arial;text-align:center;}
 .admin_copyright a:link,.admin_copyright a:visited{color:#f90;}
 .admin_copyright a:hover{color:#f90;}
+span #user_span{
+    visibility: visible;
+}
+span #pass_span{
+    visibility: visible;
+}
