@@ -25,7 +25,7 @@ class Index extends Controller
         ->where('password',$data['password'])
         ->find();
         if(!empty($user)){
-            Session::set('user_id',$user['id']);
+            Session::set('uid',$user['id']);
             $this->redirect(Url::build('/web/apply_repair/write_apply_repair','',false));
         }
     }

@@ -4,20 +4,14 @@ namespace app\Web\Controller;
 use think\Request;
 use think\View;
 use think\Db;
+use think\Session;
+use app\BaseController\CommonBase;
 
-class FeedBack
+class FeedBack extends CommonBase
 {
-    private $view;
-    private $request;
-    public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
-    }
     //该用户所有维修单
     public function select_apply_repair() {
-        $data = ['uid' => 1];
-        $list = db('applyrepair')->where($data)->select();
-      
+        $list = db('applyrepair')->where(['uid'=>Session::get('uid')])->select();
         return $this->view->fetch('SelectApplyRepair',['list'=>$list]);
        
     }
@@ -50,7 +44,7 @@ class FeedBack
     public function insert_apply_repair() {
         $file = request()->file('picture');
         // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'media' . DS . 'img');
+        $info = $file->move(ROOT_PATH . 'public/media/img');
         $date = date('Ymd',time());
 
         if($info){
@@ -64,7 +58,8 @@ class FeedBack
         $data['picture'] = $date.'/'.$info->getFilename();
         $data['inputtime'] = date('Y-m-d',time());
        if($id=db('applyrepair')->insertGetId($data)){
-            $this->select_apply_repair();
+            $list = db('applyrepair')->where(['uid'=>Session::get('uid')])->select();
+            return $this->view->fetch('SelectApplyRepair',['list'=>$list]);
        }
     }
    

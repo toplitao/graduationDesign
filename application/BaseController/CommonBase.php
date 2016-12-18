@@ -8,7 +8,7 @@ use think\Session;
 class CommonBase extends Base
 {
     protected function _OnInit(){
-        if(empty($user_id=Session::get('user_id'))){
+        if(empty($user_id=Session::get('uid'))){
             $this->error('未登录','/');
         }
         if(empty($user=db('user')->where('id',$user_id)->find())){
