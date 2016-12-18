@@ -4,16 +4,10 @@ namespace app\Web\Controller;
 use think\Request;
 use think\View;
 use think\Db;
+use app\BaseController\CommonBase;
 
-class ApplyRepair
+class ApplyRepair extends CommonBase
 {
-    private $view;
-    private $request;
-    public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
-    }
-
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         return $this->view->fetch('WriteApplyrepair');
@@ -22,7 +16,7 @@ class ApplyRepair
     public function create_apply_repair()
     {
         $data=$this->request->param();
-        if($id=db('applyrepair')->insertGetId($data)){ //添加并返回新增主键       
+        if($id=db('applyrepair')->insertGetId($data)){ //添加并返回新增主键
             return $this->view->fetch('SuccessCreateApplyrepair',['id'=>$id]);
         }
     }
@@ -47,23 +41,6 @@ class ApplyRepair
         $data=$this->request->param();
         $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
         return $this->view->fetch('SuccessUpdateApplyrepair',['id'=>$data['id']]);
-    }
-     //确认维修完成
-    public function confirm_apply_repair() {
-        $data=$this->request->param();
-        if(db('applyrepair')->where('id',$data['id'])->setField('status',6)) {//把维修单状态改为待评价
-             return $this->view->fetch('SuccessDeleteApplyrepair');
-        }
-
-    }
-    //用户评价
-    public function create_apply_feedback() {
-        $data=$this->request->param();
-        if($id=db('user_feedback')->insertGetId($data)){
-           if(db('applyrepair')->where('id',$data['oid'])->setField('status',7)) {//把维修单状态改为维修完成
-                return $this->view->fetch('SuccessSelectApplyrepair');
-            }
-        }
     }
 
 
