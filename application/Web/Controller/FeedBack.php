@@ -10,7 +10,7 @@ class FeedBack extends CommonBase
 {
     //该用户所有维修单
     public function select_apply_repair() {
-        $list = db('applyrepair')->where(['uid'=>$this->uid])->select();
+        $list = db('applyrepair')->where(['uid'=>$this->user['id']])->select();
         return $this->view->fetch('SelectApplyRepair',['list'=>$list]);
        
     }

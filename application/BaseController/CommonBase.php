@@ -25,7 +25,7 @@ class CommonBase extends Base
                 $this->error('用户权限不足','/');
             }
         }
-        $this->uid=$uid;
+        $this->user=$user;
     }
     
 

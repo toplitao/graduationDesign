@@ -10,7 +10,7 @@ class Base extends Controller
 {
     protected $view;
     protected $request;
-    protected $uid;
+    protected $user;
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();

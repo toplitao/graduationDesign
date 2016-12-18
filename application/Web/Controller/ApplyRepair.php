@@ -27,15 +27,15 @@ class ApplyRepair extends CommonBase
         echo $file->getError();
         }
         $data=$this->request->param();
-        $data['uid']=$this->uid;
+        $data['uid']=$this->user['id'];
         $data['picture'] = $date.'/'.$info->getFilename();
         $data['inputtime'] = date('Y-m-d',time());
        if($id=db('applyrepair')->insertGetId($data)){
-            $list = db('applyrepair')->where(['uid'=>$this->uid])->select();
+            $list = db('applyrepair')->where(['uid'=>$this->user['id']])->select();
             return $this->view->fetch('Web@feed_back/SelectApplyRepair',['list'=>$list]);
        }
     }
-
+    
     public function delete_apply_repair()
     {       
         $data=$this->request->param();
@@ -57,7 +57,5 @@ class ApplyRepair extends CommonBase
         $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
         return $this->view->fetch('SuccessUpdateApplyrepair',['id'=>$data['id']]);
     }
-
-
 
 }
