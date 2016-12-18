@@ -4,14 +4,13 @@ namespace app\Web\Controller;
 use think\Request;
 use think\View;
 use think\Db;
-use think\Session;
 use app\BaseController\CommonBase;
 
 class FeedBack extends CommonBase
 {
     //该用户所有维修单
     public function select_apply_repair() {
-        $list = db('applyrepair')->where(['uid'=>Session::get('uid')])->select();
+        $list = db('applyrepair')->where(['uid'=>$this->uid])->select();
         return $this->view->fetch('SelectApplyRepair',['list'=>$list]);
        
     }

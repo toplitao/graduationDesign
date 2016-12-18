@@ -12,9 +12,9 @@ class Base extends Controller
     protected $request;
     protected $uid;
     public function __construct(){
-        $this->_OnInit();
         $this->view=new View;
         $this->request=Request::instance();
+        $this->_OnInit();
     }
 
 }
