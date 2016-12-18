@@ -50,7 +50,7 @@ class FeedBack
     public function insert_apply_repair() {
         $file = request()->file('picture');
         // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'media' . DS . 'img');
         $date = date('Ymd',time());
 
         if($info){
