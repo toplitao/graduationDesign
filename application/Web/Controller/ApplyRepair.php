@@ -13,12 +13,27 @@ class ApplyRepair extends CommonBase
         return $this->view->fetch('WriteApplyrepair');
     }
 
-    public function create_apply_repair()
-    {
-        $data=$this->request->param();
-        if($id=db('applyrepair')->insertGetId($data)){ //添加并返回新增主键
-            return $this->view->fetch('SuccessCreateApplyrepair',['id'=>$id]);
+    public function insert_apply_repair() {
+        $file = request()->file('picture');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public/media/img');
+        $date = date('Ymd',time());
+
+        if($info){
+        // 成功上传后 获取上传信息
+        // 输出 jpg
+        }else{
+        // 上传失败获取错误信息
+        echo $file->getError();
         }
+        $data=$this->request->param();
+        $data['uid']=$this->uid;
+        $data['picture'] = $date.'/'.$info->getFilename();
+        $data['inputtime'] = date('Y-m-d',time());
+       if($id=db('applyrepair')->insertGetId($data)){
+            $list = db('applyrepair')->where(['uid'=>$this->uid])->select();
+            return $this->view->fetch('Web@feed_back/SelectApplyRepair',['list'=>$list]);
+       }
     }
 
     public function delete_apply_repair()
@@ -42,6 +57,7 @@ class ApplyRepair extends CommonBase
         $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
         return $this->view->fetch('SuccessUpdateApplyrepair',['id'=>$data['id']]);
     }
+
 
 
 }

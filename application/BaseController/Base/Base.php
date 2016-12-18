@@ -10,6 +10,7 @@ class Base extends Controller
 {
     protected $view;
     protected $request;
+    protected $uid;
     public function __construct(){
         $this->_OnInit();
         $this->view=new View;

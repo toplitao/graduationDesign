@@ -41,26 +41,5 @@ class FeedBack extends CommonBase
             }
         }
     }
-    public function insert_apply_repair() {
-        $file = request()->file('picture');
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public/media/img');
-        $date = date('Ymd',time());
-
-        if($info){
-        // 成功上传后 获取上传信息
-        // 输出 jpg
-        }else{
-        // 上传失败获取错误信息
-        echo $file->getError();
-        }
-        $data=$this->request->param();
-        $data['picture'] = $date.'/'.$info->getFilename();
-        $data['inputtime'] = date('Y-m-d',time());
-       if($id=db('applyrepair')->insertGetId($data)){
-            $list = db('applyrepair')->where(['uid'=>Session::get('uid')])->select();
-            return $this->view->fetch('SelectApplyRepair',['list'=>$list]);
-       }
-    }
    
 }

@@ -8,15 +8,16 @@ use think\Session;
 class CommonBase extends Base
 {
     protected function _OnInit(){
-        if(empty($user_id=Session::get('uid'))){
+        if(empty($uid=Session::get('uid'))){
             $this->error('未登录','/');
         }
-        if(empty($user=db('user')->where('id',$user_id)->find())){
+        if(empty($user=db('user')->where('id',$uid)->find())){
             $this->error('用户不存在','/');
         }
         if($user['level']<1){
             $this->error('用户权限不足','/');
         }
+        $this->uid=$uid;
     }
     
 
