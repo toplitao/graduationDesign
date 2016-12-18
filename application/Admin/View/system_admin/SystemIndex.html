@@ -59,7 +59,7 @@
                             确认收货
                         </a>
                         {elseif condition="$vo.status == 0"/}
-                        <a href="" class="btn btn-primary">
+                        <a href="{$Request.domain}/web/select_repairer?oid={$vo.id}" class="btn btn-primary">
                             待确认
                         </a>
                         {elseif condition="$vo.status == 7"/}
