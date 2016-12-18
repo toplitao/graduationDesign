@@ -11,15 +11,21 @@
 	<script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
 	<script src="/js/admin/layer_dialog.js"></script>
 	<script src="/layer-v3.0.1/layer/layer.js"></script>
+	{block name="js_css"}{/block}
 	<title>{block name="title"}{/block}</title>
 </head>
 <body>
 <header>
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-9">
 			<h2>
 				<a href="#">报修系统</a>
 			</h2>
+		</div>
+		<div class="col-md-1">
+			<h4>
+				<a href="#">首页</a>
+			</h4>
 		</div>
       	<div class="col-md-2">欢迎回来  亲爱的      <a href="#">退出</a></div>
 	</div>
