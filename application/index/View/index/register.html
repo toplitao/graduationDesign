@@ -1,6 +1,9 @@
 {extend name="base" /}
 
-{block name="js_css"}{/block}
+{block name="js_css"}
+<script src="/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+<link rel="stylesheet" href="/bootstrap-fileinput-master/css/fileinput.min.css"/>
+{/block}
 
 {block name="title"}
 {__block__}
@@ -12,7 +15,7 @@
 <div class="container">
     <form class="form-horizontal"  role="form">
         <div class="form-group">
-             <label class="col-md-3">账号类型：</label>
+             <label class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
                  <label class="radio-inline">
                      <input type="radio" name="usertype" id="usertypeOption1" value="1" checked> 普通用户
@@ -23,40 +26,66 @@
              </div>    
         </div>    
         <div class="form-group">
-            <label for="forusername" class="col-md-3">用户名：</label>
+            <label for="forusername" class="control-label col-md-3">用户名：</label>
             <div class="col-md-9">
                  <input type="text" class="form-control" id="username" placeholder="请输入6-12位数字或字母">
             </div>    
         </div>
         <div class="form-group">
-            <label for="forpassword" class="col-md-3">密码</label>
+            <label for="forpassword" class="control-label col-md-3">密码：</label>
             <div class="col-md-9">
                  <input type="password" class="form-control" id="password" placeholder="请输入6-12位数字或字母">
             </div>    
         </div>
         <div class="form-group">
-            <label for="forrepassword" class="col-md-3">确认密码</label>
+            <label for="forrepassword" class="control-label col-md-3">确认密码：</label>
             <div class="col-md-9">
                  <input type="password" class="form-control" id="repassword" placeholder="请输入6-12位数字或字母">
             </div>    
         </div>
         <div class="form-group">
-            <label for="forphone" class="col-md-3">联系电话</label>
+            <label for="forphone" class="control-label col-md-3">联系电话：</label>
             <div class="col-md-9">
                  <input type="number" class="form-control" id="phone" placeholder="请输入有效的联系电话">
             </div>    
         </div>
         <div class="form-group">
-            <label for="forphone" class="col-md-3">地址</label>
+            <label for="forphone" class="control-label col-md-3">地址：</label>
             <div class="col-md-9">
                  <input type="text" class="form-control" id="address" placeholder="请输入地址">
             </div>    
         </div>
-        <div>
-            <label class="control-label">Select File</label>
-            <input id="input-1" type="file" class="file">
-        </div>    
+        <div style="display: none;" class="content-hidden">
+	        <div class="form-group">
+	            <label for="forsfz" class="control-label col-md-3">身份证：</label>
+	            <div class="col-md-9">
+					<input type="file" id="sfz" class="file file-loading" data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false">
+				</div>	
+	        </div>  
+	        <div class="form-group">
+	            <label for="forcyzgz" class="control-label col-md-3">从业资格证：</label>
+	            <div class="col-md-9">
+					<input type="file" id="cyzgz" class="file file-loading" data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false">
+				</div>	
+	        </div>
+	    </div>    
         <button type="button" class="btn btn-primary btn-block"/>注册
     </form>    
 </div>
+<script>
+	$("input[type='radio']").change(function(){
+		var type = $(this).val();
+		if(type == 2){
+			$('.content-hidden').show();
+		}
+		if(type == 1){
+			$('.content-hidden').hide();
+		}
+	})
+	$("#sfz").fileinput({
+	    uploadUrl: "#", 
+	    uploadAsync: true,
+	    maxFileCount: 1
+	});
+</script>
 {/block}
