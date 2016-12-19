@@ -3,12 +3,20 @@
 body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
 .row{
     background-color:gray;
-    height:70px;
+    height:75px;
 }
 .row h2 {
     margin-left: 15%;
 }
+.row h4 {
+    line-height: 45px;
+}
 .left{
+    font-size: 18px;
+    height: 100%;
+    background-color: gray;
+}
+.left ul{
     margin-top: 2%;
     text-align: center;
 }
