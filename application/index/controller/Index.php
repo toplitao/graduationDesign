@@ -76,4 +76,22 @@ class Index extends Controller
              dr_show_return(2,'密码格式不正确，请输入6-12位数字或字母');
          }
     } 
+    
+	/**
+	 * ajax异步上传图片
+	 */
+	public function ajaxUploadImg(){
+		define("UPLOAD_ROOT", dirname(dirname(dirname(dirname(__FILE__)))));
+		//	获取表单上传文件	例如上传了001.jpg	
+		$file	=	request()->file('sfz');	
+		//	移动到框架应用根目录/public/uploads/	目录下				
+		$info	=	$file->move(UPLOAD_ROOT.'/public/media/img/');				
+		if($info){
+			//	成功上传后	获取上传信息								
+			return dr_show_return(1,'上传成功','',$info->getSaveName());					
+		}else{
+			//	上传失败获取错误信息	
+			return dr_show_return(2,'上传失败','',$file->getError());								
+		}			
+	} 
 }
