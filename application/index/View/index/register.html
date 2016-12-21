@@ -14,7 +14,7 @@
 
 {block name="content"}
 <div class="container">
-    <form class="form-horizontal"  role="form">
+    <form class="form-horizontal register_form"  role="form">
         <div class="form-group">
              <label class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
@@ -29,31 +29,31 @@
         <div class="form-group">
             <label for="forusername" class="control-label col-md-3">用户名：</label>
             <div class="col-md-9">
-                 <input type="text" class="form-control" id="username" placeholder="请输入6-12位数字或字母">
+                 <input type="text" class="form-control" id="username" name="username" placeholder="请输入6-12位数字或字母或下划线">
             </div>    
         </div>
         <div class="form-group">
             <label for="forpassword" class="control-label col-md-3">密码：</label>
             <div class="col-md-9">
-                 <input type="password" class="form-control" id="password" placeholder="请输入6-12位数字或字母">
+                 <input type="password" class="form-control" id="password" name="password" placeholder="请输入6-12位数字或字母或下划线">
             </div>    
         </div>
         <div class="form-group">
             <label for="forrepassword" class="control-label col-md-3">确认密码：</label>
             <div class="col-md-9">
-                 <input type="password" class="form-control" id="repassword" placeholder="请输入6-12位数字或字母">
+                 <input type="password" class="form-control" id="repassword" name="repassword" placeholder="请再次输入6-12位数字或字母或下划线">
             </div>    
         </div>
         <div class="form-group">
             <label for="forphone" class="control-label col-md-3">联系电话：</label>
             <div class="col-md-9">
-                 <input type="number" class="form-control" id="phone" placeholder="请输入有效的联系电话">
+                 <input type="number" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
             </div>    
         </div>
         <div class="form-group">
             <label for="forphone" class="control-label col-md-3">地址：</label>
             <div class="col-md-9">
-                 <input type="text" class="form-control" id="address" placeholder="请输入地址">
+                 <input type="text" class="form-control" id="address" name="address" placeholder="请输入有效联系的地址">
             </div>    
         </div>
         <div style="display: none;" class="content-hidden">
@@ -71,10 +71,152 @@
 				</div>	
 	        </div>
 	    </div>    
-        <button type="button" class="btn btn-primary btn-block"/>注册
+        <button type="submit" class="btn btn-primary btn-block"/>注册
     </form>    
 </div>
 <script>
+	/*表单验证*/
+	$(document).ready(function() {
+	    $('.register_form').bootstrapValidator({
+	        message: '输入不合法',
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            username: {
+	                message: '用户名不能为空',
+	                threshold: 6,
+	                validators: {
+	                    notEmpty: {
+	                        message: '用户名不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 6,
+	                        max: 12,
+	                        message: '用户名必须为6-12位数字或字母或下划线'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: '用户名必须为6-12位数字或字母或下划线'
+	                    }
+	                }
+	            },
+	            password: {
+	                message: '密码不能为空',
+	                validators: {
+	                	threshold: 6,
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 6,
+	                        max: 12,
+	                        message: '密码必须为6-12位数字或字母或下划线'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: '密码必须为6-12位数字或字母或下划线'
+	                    }
+	                }
+	            },
+	            repassword: {
+	                message: '确认密码不能为空',
+	                validators: {
+	                	threshold: 6,
+	                    notEmpty: {
+	                        message: '确认密码不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 6,
+	                        max: 12,
+	                        message: '密码必须为6-12位数字或字母或下划线'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: '密码必须为6-12位数字或字母或下划线'
+	                    },
+	                    identical: {
+	                        field: 'password',
+	                        message: '两次密码不一致'
+                   		}
+	                }
+	            },
+	            phone: {
+	                message: '请输入有效的手机号',
+	                validators: {
+	                	threshold: 11,
+	                    notEmpty: {
+	                        message: '联系方式不能为空'
+	                    },
+	                    regexp: {
+	                        regexp: /^(((13[0-9]{1})|(15[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/,
+	                        message: '请输入有效的11位手机号'
+	                    }
+	                }
+	            },
+	            address: {
+	                message: '请输入有效的联系地址',
+	                validators: {
+	                	threshold: 6,
+	                    notEmpty: {
+	                        message: '联系地址不能为空'
+	                    },
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30,
+	                        message: '有效地址必须为6-30字内'
+	                    }
+	                }
+	            },
+	            sfz: {
+	                message: '请选择上传的身份证',
+	                validators: {
+	                    notEmpty: {
+	                        message: '请选择上传的身份证'
+	                    },
+	                    file: {
+	                        extension: 'png,jpg,jpeg,gif',
+	                        minSize: 1,
+	                        maxSize: 10*1024*1024,
+	                        message: '请选择一个大小10M内的图片类型文件'
+                   		}
+	                }
+	            },
+	            cyzgz: {
+	                message: '请选择上传的从业资格证',
+	                validators: {
+	                    notEmpty: {
+	                        message: '请选择上传的从业资格证'
+	                    },
+	                    file: {
+	                        extension: 'png,jpg,jpeg,gif',
+	                        minSize: 1,
+	                        maxSize: 10*1024*1024,
+	                        message: '请选择一个大小在10M内的图片类型文件'
+                   		}
+	                }
+	            }
+	        }
+	    })
+	    //ajax异步提交数据
+	    .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+          
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+	});
 	$("input[type='radio']").change(function(){
 		var type = $(this).val();
 		if(type == 2){
@@ -84,6 +226,7 @@
 			$('.content-hidden').hide();
 		}
 	})
+	/*上传身份证*/
 	$("#sfz").fileinput({
 	    uploadUrl: "/index/index/ajaxUploadImg", 
 	    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
@@ -93,6 +236,7 @@
 	    maxFileCount: 1,
 	    
 	});
+	/*上传身份证回调函数*/
 	$("#sfz").on("fileuploaded", function(event, data) {
         if(data.response.status == 1)
         {
@@ -104,6 +248,7 @@
             dialog.alert(data.response.msg);
         }
     });
+    /*上传从业资格证*/
 	$("#cyzgz").fileinput({
 	    uploadUrl: "/index/index/ajaxUploadImg", 
 	    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
@@ -112,5 +257,6 @@
 	    uploadAsync: true,
 	    maxFileCount: 1
 	});
+	/*上传从业资格证回调函数*/
 </script>
 {/block}
