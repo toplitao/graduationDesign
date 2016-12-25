@@ -7,13 +7,11 @@ body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
     position: fixed;
     z-index: 10;
     width: 100%;
-   
 }
-.top h2 {
-    margin-left: 15%;
-}
-.top h4 {
-    line-height: 45px;
+.top div{
+	height: 100%;
+	line-height: 100%;
+	display: inline-block;
 }
 .left{
     font-size: 18px;
