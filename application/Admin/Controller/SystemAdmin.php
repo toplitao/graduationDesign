@@ -16,4 +16,19 @@ class SystemAdmin extends CommonBase
         return $this->view->fetch('SystemIndex',['list'=>$list]);
        
     }
+    public function rest_password(){
+         $reset_content=$this->request->param();
+         $user_info=db('user')->where('id',$this->user['id'])->find();
+         if($user_info['password']==md5($reset_content['ori_password'])){
+             if($reset_content['new_password']==$reset_content['once_password']){
+                db('user')->where('id',$this->user('id'))->update(array('password'=>md5($reset_content['new_password'])));
+                return $msg='密码修改成功！';
+             }else{
+                 return $msg='两次密码不一致！';
+             }
+              
+         }else{
+             return $msg='密码错误！';
+         }
+    }
 }
