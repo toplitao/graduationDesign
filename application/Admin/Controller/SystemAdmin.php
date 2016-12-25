@@ -12,7 +12,7 @@ class SystemAdmin extends CommonBase
     //后台首页
     public function admin_index() {
         
-        $list = db('applyrepair')->where(['status'=>0])->select();
+        $list = db('applyrepair')->where(['status'=>0])->paginate(5);
         return $this->view->fetch('SystemIndex',['list'=>$list]);
        
     }

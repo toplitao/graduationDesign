@@ -32,7 +32,7 @@ class FeedBack extends CommonBase
     }
     public function insert_apply_feedback() {
         $data=$this->request->param();
-        $data['user_id'] = 1;
+        $data['user_id'] = $this->user['id'];
         if($id=db('user_feedback')->insertGetId($data)){
             if(db('applyrepair')->where('id',$data['order_id'])->setField('status',7)) {//把维修单状态改为维修完成
             

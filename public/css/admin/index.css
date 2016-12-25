@@ -1,20 +1,30 @@
 @charset "utf-8";
 *{margin:0;padding:0;}
 body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
-.row{
-    background-color:gray;
-    height:75px;
+.top{
+    background-color: #EEEEEE;
+    height:10%;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+   
 }
-.row h2 {
+.top h2 {
     margin-left: 15%;
 }
-.row h4 {
+.top h4 {
     line-height: 45px;
 }
 .left{
     font-size: 18px;
     height: 100%;
-    background-color: gray;
+    background-color:#EEEEEE;
+    position: fixed;
+    z-index: 10;
+    margin-top: 4.5%;
+   
+  
+   
 }
 .left ul{
     margin-top: 2%;
@@ -26,4 +36,21 @@ body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
     width: 150px;
     height: 50px;
     line-height: 50px;
+}
+.right{
+    margin-top: 8%;
+    width: 1000px;
+    margin-left: 27%;
+    height: 80%;
+}
+.bottom{
+    width: 100%;
+    margin-top: 50%;
+    height: 10%;
+    position: fixed;
+    z-index: 20;
+    background-color:#EEEEEE;
+}
+.page{
+    float: right;
 }
