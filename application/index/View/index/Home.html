@@ -1,0 +1,51 @@
+{extend name="../application/index/view/base.html" /}
+
+{block name="js_css"}
+ <link rel="stylesheet" href="{$Request.domain}/css/index/home.css">
+{/block}
+
+{block name="title"}
+{__block__}
+首页
+{/block}
+
+{block name="content"}
+
+
+<script>
+    function user(){
+        var username = $("input[name='username']").val();
+        var postData = {'username':username};
+        var url = "/index/index/ajaxCheckUsername";
+        $.post(url,postData,function(result){
+              $("#user_span").html(result.msg);
+              if(result.status == 1){
+                   $("#user_span").css("color","green" );
+              }
+              if(result.status == 2){
+                   $("#user_span").css("color","red" );
+              }
+        },'json');
+    }
+    function pass(){
+        var password = $("input[name='password']").val();
+        var postData = {'password':password};
+        var url = "/index/index/ajaxCheckPassword";
+        $.post(url,postData,function(result){
+              $("#pass_span").html(result.msg);
+              if(result.status == 1){
+                   $("#pass_span").css("color","green" );
+              }
+              if(result.status == 2){
+                   $("#pass_span").css("color","red" );
+              }
+        },'json');
+    }
+</script>
+
+{/block}
+
+{block name="footer"}
+{__block__}
+ @ 版权所有
+{/block}
