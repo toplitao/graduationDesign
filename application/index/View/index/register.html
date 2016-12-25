@@ -19,10 +19,10 @@
              <label class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
                  <label class="radio-inline">
-                     <input type="radio" name="usertype" id="usertypeOption1" value="1" checked> 普通用户
+                     <input type="radio" name="level" id="usertypeOption1" value="1" checked> 普通用户
                  </label>
                  <label class="radio-inline">
-                     <input type="radio" name="usertype" id="usertypeOption2" value="2"> 维修人员
+                     <input type="radio" name="level" id="usertypeOption2" value="2"> 维修人员
                  </label>
              </div>    
         </div>    
@@ -58,24 +58,20 @@
         </div>
         <div style="display: none;" class="content-hidden">
 	        <div class="form-group">
-	            <label for="forsfz" class="control-label col-md-3">身份证：</label>
+	            <label for="forsfz" class="control-label col-md-3">身份证，从业资格证：</label>
 	            <div class="col-md-9">
-					<input type="file" id="sfz" name="sfz" class="file file-loading" data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false">
-				    <input type="hidden" id="sfz_hidden"/>
+					<input id="sfz" name="img[]" type="file" class="file file-loading" multiple='multiple' data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="true" data-show-caption="true">
+	                <input type="hidden" id="img" name="img" />
 	            </div>	
 	        </div>  
-	        <div class="form-group">
-	            <label for="forcyzgz" class="control-label col-md-3">从业资格证：</label>
-	            <div class="col-md-9">
-					<input type="file" id="cyzgz" name="cyzgz" class="file file-loading" data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false">
-				</div>	
-	        </div>
 	    </div>    
         <button type="submit" class="btn btn-primary btn-block"/>注册
     </form>    
 </div>
 <script>
-	/*表单验证*/
+	/**
+	 * 表单验证
+	 */
 	$(document).ready(function() {
 	    $('.register_form').bootstrapValidator({
 	        message: '输入不合法',
@@ -171,10 +167,10 @@
 	                }
 	            },
 	            sfz: {
-	                message: '请选择上传的身份证',
+	                message: '请选择上传的身份证，从业资格证',
 	                validators: {
 	                    notEmpty: {
-	                        message: '请选择上传的身份证'
+	                        message: '请选择上传的身份证，从业资格证'
 	                    },
 	                    file: {
 	                        extension: 'png,jpg,jpeg,gif',
@@ -183,40 +179,35 @@
 	                        message: '请选择一个大小10M内的图片类型文件'
                    		}
 	                }
-	            },
-	            cyzgz: {
-	                message: '请选择上传的从业资格证',
-	                validators: {
-	                    notEmpty: {
-	                        message: '请选择上传的从业资格证'
-	                    },
-	                    file: {
-	                        extension: 'png,jpg,jpeg,gif',
-	                        minSize: 1,
-	                        maxSize: 10*1024*1024,
-	                        message: '请选择一个大小在10M内的图片类型文件'
-                   		}
-	                }
 	            }
 	        }
-	    })
-	    //ajax异步提交数据
-	    .on('success.form.bv', function(e) {
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-          
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
+	    }).on('success.form.bv', function(e) {
+	    	if(e.type == 'success'){
+	    		var url = "/index/index/register";
+	    		var data = $(".register_form").serializeArray();
+	    		var postData = {};
+	    		$(data).each(function(i){
+	    			postData[this.name] = this.value;
+	    		})
+	    		$.post(url,postData,function(result) {
+	    			console.log(result);
+	                if(result.status == 1)
+			        {
+			            dialog.success(result.msg,result,url);
+			        }
+			        if(result.status == 2)
+			        {
+			            dialog.error(result.msg);
+			        }
+            	}, 'json');
+	    	}else{
+	    		dialog.error("提交失败！");
+	    	}
         });
 	});
+	/**
+	 * 注册普通会员、维修人员
+	 */
 	$("input[type='radio']").change(function(){
 		var type = $(this).val();
 		if(type == 2){
@@ -226,37 +217,39 @@
 			$('.content-hidden').hide();
 		}
 	})
-	/*上传身份证*/
+	/**
+	 * 上传身份证，从业资格证
+	 */
 	$("#sfz").fileinput({
 	    uploadUrl: "/index/index/ajaxUploadImg", 
 	    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
 	    maxFileSize: 4096,
 	    language: 'zh',
 	    uploadAsync: true,
-	    maxFileCount: 1,
+	    maxFileCount: 2,
 	    
 	});
-	/*上传身份证回调函数*/
+	/**
+	 * 上传身份证，从业资格证回调函数
+	 */
 	$("#sfz").on("fileuploaded", function(event, data) {
         if(data.response.status == 1)
         {
             dialog.alert(data.response.msg);
-            $("#sfz_hidden").val(data.response.data);
+            var old_img = $("#img").val();
+            var oid_length = old_img.length;
+            var img = data.response.data;
+            if(oid_length <=0){
+            	var new_img = img;
+            }else{
+                var new_img = old_img +','+img;
+            }
+            $("#img").val(new_img);
         }
         if(data.response.status == 2)
         {
             dialog.alert(data.response.msg);
         }
     });
-    /*上传从业资格证*/
-	$("#cyzgz").fileinput({
-	    uploadUrl: "/index/index/ajaxUploadImg", 
-	    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
-	    maxFileSize: 4096,
-	    language: 'zh',
-	    uploadAsync: true,
-	    maxFileCount: 1
-	});
-	/*上传从业资格证回调函数*/
 </script>
 {/block}
