@@ -15,10 +15,6 @@ class Index extends Controller
         $this->view=new View;
         $this->request=Request::instance();
     }
-    public function index()
-    {
-        return $this->view->fetch('Login');
-    }
     public function login(){
         $data=$this->request->param();
         $data['password'] = md5($data['password']);
@@ -28,7 +24,7 @@ class Index extends Controller
         if(!empty($user)){
             Session::set('uid',$user['id']);
             if($user['level'] == 1){
-                $url = '/web/apply_repair/write_apply_repair';
+                $url = '/';
             }else{
                 $url = '/admin/system_admin/admin_index';
             }
