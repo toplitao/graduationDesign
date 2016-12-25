@@ -2,6 +2,66 @@
 
 {block name="js_css"}
  <link rel="stylesheet" href="{$Request.domain}/css/index/home.css">
+    <style>
+        .main{
+            width:100%;
+            height:100%;
+        }
+        .middle{
+           margin-left:100x;
+           margin-top:100px;
+           width:100%;
+           height:133px;
+        }
+        .middle ul{
+            margin-left:20%;
+            width:80%;
+            float:left;
+            list-style:none;
+        }
+        .middle ul li{
+            text-align:center;
+            margin-left:0px;
+            float:left;
+            list-style:none;
+            width:156px;
+            height:110px;
+        }
+         .middle ul li:hover{
+            background-color:black;
+        }
+        .jeep_img{
+            width:130100%;
+            height:350px;
+            border:1px black solid;
+        }
+        .anli{
+            margin-top:10px;
+            width:100%;
+            height:44px;
+            border:1px black solid;
+        }
+        .chengnuo{
+            border:1px black solid;
+            width:1000px;
+            height:203px;
+            margin-left:200px;
+        }
+        .chengnuo ul{
+            float:left;
+            list-style:none;
+        }
+         .chengnuo ul li{
+            float:left;
+            list-style:none;
+            margin-left:100px;
+        }
+        .chengnuo1{
+            float:left;
+            width:250px;
+            height:46px;
+        }
+    </style>
 {/block}
 
 {block name="title"}
@@ -9,43 +69,71 @@
 首页
 {/block}
 
-{block name="content"}
+{block name="main"}
+<div class="middle">
+    <ul>
+        <li>
+            <a href="#">
+                <s></s>
+                <p>苹果</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <s></s>
+                <p>苹果</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <s></s>
+                <p>苹果</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <s></s>
+                <p>苹果</p>
+            </a>
+        </li>
+         <li>
+            <a href="#">
+                <s></s>
+                <p>苹果</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <s></s>
+                <p>更多</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="jeep_img">
 
-
-<script>
-    function user(){
-        var username = $("input[name='username']").val();
-        var postData = {'username':username};
-        var url = "/index/index/ajaxCheckUsername";
-        $.post(url,postData,function(result){
-              $("#user_span").html(result.msg);
-              if(result.status == 1){
-                   $("#user_span").css("color","green" );
-              }
-              if(result.status == 2){
-                   $("#user_span").css("color","red" );
-              }
-        },'json');
-    }
-    function pass(){
-        var password = $("input[name='password']").val();
-        var postData = {'password':password};
-        var url = "/index/index/ajaxCheckPassword";
-        $.post(url,postData,function(result){
-              $("#pass_span").html(result.msg);
-              if(result.status == 1){
-                   $("#pass_span").css("color","green" );
-              }
-              if(result.status == 2){
-                   $("#pass_span").css("color","red" );
-              }
-        },'json');
-    }
-</script>
-
-{/block}
-
-{block name="footer"}
-{__block__}
- @ 版权所有
+</div>
+<div class="anli"></div>
+<div class="chengnuo">
+    <ul>
+        <li>
+            <div class="chengguo1">
+                <h3>上门维修</h3>
+                <p>随时随地，足不出户修手机</p>
+            </div>
+        </li>
+         <li>
+            <div class="chengguo1">
+                <h3>上门维修</h3>
+                <p>随时随地，足不出户修手机</p>
+            </div>
+        </li>
+         <li>
+            <div class="chengguo1">
+                <h3>上门维修</h3>
+                <p>随时随地，足不出户修手机</p>
+            </div>
+        </li>
+    </ul>
+</div>
 {/block}
