@@ -87,6 +87,13 @@ class Index extends Controller
      * 忘记密码找回操作
      */
     public function forgetPassword(){
+    	if($this->request->param()){
+    		/*生成随即的4位随机码*/
+			for($i=1;$i<=4;$i++){
+				$code.= rand(0,9);
+			}
+			setcookie('code',$code,120);//验证码两分钟内有效
+    	}
         return $this->view->fetch('forgetPassword');
     } 
     /*
