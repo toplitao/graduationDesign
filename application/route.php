@@ -26,6 +26,4 @@ Route::get('/register',function(View $view){
 Route::get('/login',function(View $view){
     return $view->fetch('index@index/login');
 });
-Route::get('/home',function(View $view){
-    return $view->fetch('index@index/home');
-});
+Route::get('/home','web/home/home');
