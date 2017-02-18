@@ -2,11 +2,11 @@
 *{margin:0;padding:0;}
 body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
 .row{
-    background-color:gray;
+    background-color:#f8f8f8;
     height:70px;
 }
 .row ul{
-    margin-left: 40%;
+    margin-left: 20%;
     float: right;
 }
 .row ul li {

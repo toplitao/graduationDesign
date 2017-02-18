@@ -1,0 +1,196 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ul{
+	list-style: none;
+}
+.head{
+	height: 68px;
+	border-bottom: #f2f2f2 solid 1px;
+    background: #f8f8f8;
+}
+
+
+.main {
+	width: 100%;
+	height: 100%;
+}
+
+.middle {
+	width: 1000px;
+	margin: 0 auto;
+	height: 133px;
+	margin-top: 23px;
+}
+
+.middle .menu {
+	list-style: none;
+}
+
+.middle .menu li {
+	text-align: center;
+	margin-left: 0px;
+	float: left;
+	list-style: none;
+	width: 166px;
+	height: 110px;
+	padding: 0 5px;
+}
+
+.middle .menu li:hover {
+	/*background-color: black;*/
+	box-shadow: 1px 1px 1px 1px #ccc;
+}
+.menu li a{
+	padding: 20px 0;
+	width: 100%;
+	height: 70px;
+	display: block;
+	font-style: normal;
+    text-decoration: none;
+    color: black;
+}
+
+
+.menu li p{
+	padding-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+.menu li a s{
+	width: 100%;
+	height: 30px;
+	display: block;
+}
+
+.menu li a .menu-item1{
+	background: url(../../media/img/iPhone_def.png) no-repeat center;
+}
+.menu li a .menu-item2{
+	background: url(../../media/img/huawei_def.png) no-repeat center;
+}
+.menu li a .menu-item3{
+	background: url(../../media/img/mi_def.png) no-repeat center;
+}
+.menu li a .menu-item4{
+	background: url(../../media/img/snmsung_def.png) no-repeat center;
+}
+.menu li a .menu-item5{
+	background: url(../../media/img/meizu_def.png) no-repeat center;
+}
+.menu li a .menu-item6{
+	background: url(../../media/img/more_def.png) no-repeat center;
+}
+
+
+.jeep_img {
+	width: 130100%;
+	height: 350px;
+	/*margin-top: 24px;*/
+}
+
+.anli {
+	width: 100%;
+	height: 44px;
+	background: #f7f8fa;
+}
+.content{
+	width: 1000px;
+	margin: 0 auto;
+}
+.chengnuo {
+	/*border: 1px black solid;*/
+	width: 1000px;
+	height: 203px;
+	padding: 78px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.chengnuo ul {
+	width: 100%;
+	float: left;
+	list-style: none;
+}
+
+.chengnuo ul li {
+	width: 25%;
+	float: left;
+	list-style: none;
+	/*margin-left: 100px;*/
+}
+.chengnuo li s{
+	margin-right: 11px;
+    width: 44px;
+    height: 44px;
+    background: url(../../media/img/pz.png);
+    float: left;
+}
+}
+.chengnuo li .item1{
+	background-position: -44px -44px;
+}
+.chengnuo li .item2{
+	background-position: -44px -44px;
+}
+.chengnuo li .item3{
+	background-position: -44px 0;
+}
+.chengnuo li .item4{
+	background-position: 0 -44px;
+}
+.chengnuo1 {
+	float: left;
+	width: 250px;
+	height: 46px;
+}
+.chengguo1 h3{
+	font-weight: normal;
+	font-size: 18px;
+	color: #333333;
+}
+.chengguo1 p{
+	padding-top: 8px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    font-family: 宋体;
+}
+.footer{
+	padding: 47px 0 21px;
+    width: 100%;
+    background: #f8f8f8;
+    float: left;	
+    height: 300px;
+}
+.footer .conter{
+	width: 1000px;
+	margin: 0 auto;
+}
+.footer-nav{
+	width: 100%;
+}
+.first-meun li{
+	padding-right: 100px;
+    width: auto;
+    font-size: 14px;
+    color: #333;
+    float: left;	
+}
+.child-menu{
+	padding-top: 4px;	
+}
+.child-menu li{
+	padding-right: 0;
+    width: auto!important;
+    line-height: 24px;
+    font-size: 12px;
+    color: #999;
+    display: block;
+    float: none;
+    font-family: "宋体";	
+}
+.child-menu li:hover{
+	cursor: pointer;
+	color: black;
+}
