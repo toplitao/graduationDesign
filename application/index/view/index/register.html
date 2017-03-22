@@ -1,16 +1,18 @@
 {extend name="../application/index/view/base.html" /}
-
 {block name="js_css"}
+<!--异步上传文件插件文件-->
 <script src="/bootstrap-fileinput-master/js/fileinput.min.js"></script>
 <link rel="stylesheet" href="/bootstrap-fileinput-master/css/fileinput.min.css"/>
 <script src="/bootstrap-fileinput-master/js/locales/zh.js"></script>
+<!--表单验证插件文件-->
+<link rel="stylesheet" href="/bootstrapvalidator-master/dist/css/bootstrapValidator.min.css"></link>
+<script src="/bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+<script src="/bootstrapvalidator-master/dist/js/language/zh_CN.js"></script>
 {/block}
 
 {block name="title"}
-{__block__}
 注册
 {/block}
-
 
 {block name="content"}
 <div class="container">

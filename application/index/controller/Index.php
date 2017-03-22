@@ -1,19 +1,27 @@
 <?php
 namespace app\index\Controller;
+use app\base\CommonBase;
 use think\View;
 use think\DB;
 use think\Url;
 use think\Session;
 use think\Request;
-use think\Controller;
 
-class Index extends Controller
-{
+class Index extends CommonBase{
     protected $view;
     protected $request;
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();
+        if(!$this->_OnInit()){
+//            header('location:/index/index/login');
+        }else{
+            $this->user = $this->_OnInit();
+        }
+    }
+    public function index(){
+        $data['userInfo'] = $this->user;
+        return $this->view->fetch('web@home/home',$data);
     }
     public function login(){
         $data=$this->request->param();
@@ -23,17 +31,19 @@ class Index extends Controller
         ->find();
         if(!empty($user)){
             Session::set('uid',$user['id']);
-            if($user['level'] == 1){
-                $url = '/';
-            }else{
-                $url = '/admin/system_admin/admin_index';
+            if($user['level'] == 1){ //普通用户
+                $url = '/index/index/index';
+            }else{//维修人员
+                $url = '/admin/index/index';
             }
-            $this->redirect(Url::build($url,'',false));
+            return dr_show_return('200','登录成功',array('url'=>$url));
         }else{
-            $url ="'/index/index/index'";
-            echo "<script>alert('用户名或账号错误！');</script>";
-            echo "<script>window.location = ".$url."</script>";
+            return dr_show_return('300','用户名或密码错误！');
         }
+    }
+    public function loginout(){
+        Session::clear();
+        return $this->view->fetch('web@home/home');
     }
     /*
      * 注册新用户操作
@@ -83,6 +93,7 @@ class Index extends Controller
      * 忘记密码找回操作
      */
     public function forgetPassword(){
+        $code = '';
     	if($this->request->param()){
     		/*生成随即的4位随机码*/
 			for($i=1;$i<=4;$i++){

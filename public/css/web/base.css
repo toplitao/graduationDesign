@@ -95,7 +95,6 @@ ul {
 body{
 	font-size: 1.2rem;
 	line-height: 1.5;
-	background-color: #f7f7f7;
 }
 
 a{
@@ -109,10 +108,51 @@ a:hover, a:active {
 }
 
 /**
+ * 顶部样式
+ */
+nav{
+    width: 100%;
+    font-size: 0rem;
+    color: gray;
+}  
+nav .content{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 0rem;
+    width: 90%;
+}
+nav .tel{
+    float: left;
+    font-size: 1rem;
+    width: 20%;
+}
+nav div ul{
+    float: right;
+}
+nav div ul li{
+    display: inline-block;
+}
+nav .loginout{
+    font-size: 1rem;
+    float: right;
+}
+
+nav div.loginout a{
+    text-decoration: none;
+    cursor: pointer;
+}
+nav div ul li a{
+    display: block;
+    color: gray;
+    margin: 0rem 2rem;
+    font-size: 1rem;
+}
+/**
  * 头部样式
  */
 header{
     width: 100%;
+	background-color: #f8f8f8;
     text-align: center;
     font-size: 0rem;
 }
