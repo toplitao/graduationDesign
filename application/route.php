@@ -21,11 +21,11 @@ use think\View;
 
 // ];
 Route::get('/register',function(View $view){
-    return $view->fetch('Index@index/register');
+    return $view->fetch('index@index/register');
 });
 Route::get('/login',function(View $view){
-    return $view->fetch('Index@index/login');
+    return $view->fetch('index@index/login');
 });
 Route::get('/',function(View $view){
-    return $view->fetch('Web@home/home');
+    return $view->fetch('web@home/home');
 });

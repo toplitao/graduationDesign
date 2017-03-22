@@ -13,7 +13,7 @@ class SystemAdmin extends CommonBase
     public function admin_index() {
         
         $list = db('applyrepair')->where(['status'=>0])->paginate(5);
-        return $this->view->fetch('SystemIndex',['list'=>$list]);
+        return $this->view->fetch('system_index',['list'=>$list]);
        
     }
     public function rest_password(){

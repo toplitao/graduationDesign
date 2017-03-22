@@ -1,7 +1,7 @@
 <?php
-namespace app\BaseController;
+namespace app\base;
 
-use app\BaseController\Base\Base;
+use app\base\Base\Base;
 use think\Db;
 use think\Session;
 

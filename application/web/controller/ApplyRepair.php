@@ -4,14 +4,14 @@ namespace app\Web\Controller;
 use think\Request;
 use think\View;
 use think\Db;
-use app\BaseController\CommonBase;
+use app\base\CommonBase;
 
 class ApplyRepair extends CommonBase
 {
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $address_info=db('linkaddress')->select();
-        return $this->view->fetch('WriteApplyrepair',['address'=>$address_info]);
+        return $this->view->fetch('write_apply_repair',['address'=>$address_info]);
     }
 
     public function insert_apply_repair() {
@@ -33,7 +33,7 @@ class ApplyRepair extends CommonBase
         $data['inputtime'] = date('Y-m-d',time());
        if($id=db('applyrepair')->insertGetId($data)){
             $list = db('applyrepair')->where(['uid'=>$this->user['id']])->select();
-            return $this->view->fetch('Web@feed_back/SelectApplyRepair',['list'=>$list]);
+            return $this->view->fetch('web@feed_back/select_apply_repair',['list'=>$list]);
        }
     }
     
@@ -41,7 +41,7 @@ class ApplyRepair extends CommonBase
     {       
         $data=$this->request->param();
         if(db('applyrepair')->delete($data['id'])){  // 根据主键删除  // 条件删除：db('applyrepair')->where('id',1)->delete();    
-            return $this->view->fetch('SuccessDeleteApplyrepair');
+            return $this->view->fetch('success_delete_apply_repair');
         }
     }
 
@@ -49,14 +49,14 @@ class ApplyRepair extends CommonBase
     {    
         $data=$this->request->param();
         $db_data=db('applyrepair')->find($data['id']);  // 根据主键查询（ find查询为空返回null,select返回[] ）  // 条件查询：db('applyrepair')->where('id',1)->find();   
-        return $this->view->fetch('SuccessSelectApplyrepair',['data'=>$db_data]);//如果使用select ,这里应该['data'=>$db_data[0]]
+        return $this->view->fetch('success_select_apply_repair',['data'=>$db_data]);//如果使用select ,这里应该['data'=>$db_data[0]]
     }
 
     public function update_apply_repair()
     {    
         $data=$this->request->param();
         $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
-        return $this->view->fetch('SuccessUpdateApplyrepair',['id'=>$data['id']]);
+        return $this->view->fetch('success_update_apply_repair',['id'=>$data['id']]);
     }
 
 }

@@ -90,7 +90,7 @@ class Index extends Controller
 			}
 			setcookie('code',$code,120);//验证码两分钟内有效
     	}
-        return $this->view->fetch('forgetPassword');
+        return $this->view->fetch('forget_password');
     } 
     /*
      * ajax异步验证用户名是否被注册

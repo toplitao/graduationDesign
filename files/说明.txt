@@ -20,10 +20,10 @@ files/repaircenter.sql:为数据库文件
 
 命名规则：
 由于要快速开发，所以使用默认的路由类型
-大部分文件夹和文件驼峰法（首字母大写） eg:ApplyRepair  
-在/application/模块/View/下，视图文件夹要命名成 对应控制器名字的下划线命名法 eg: 控制器名字为ApplyRepair，此文件名就为apply_repair
-类名每个单词（首字母大写） eg:ApplyRepair
-方法名下划线命名 eg:write_apply_repair
+目录：目录使用小写+下划线 
+文件：类文件采用驼峰法命名（首字母大写），其它文件采用小写+下划线命名; 类名和类文件名保持一致，统一采用驼峰法命名（首字母大写）;其它文件采用小写+下划线命名
+方法：命名使用小写字母和下划线（小写字母开头）的方式，例如 get_client_ip
+属性的命名使用驼峰法（首字母小写），例如 tableName、instance
 
 bootstarp3引入：
 eg: <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">

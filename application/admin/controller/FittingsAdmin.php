@@ -9,14 +9,14 @@ Class FittingsAdmin {
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();
-		define("URL_FITTINGS", '/index.php/Admin/Fittings_admin/FittingsIndex');
+		define("URL_FITTINGS", '/index.php/admin/fittings_admin/FittingsIndex');
     }
     /**
 	 * 配件管理功能首页
 	 */
     public function FittingsIndex(){
     	$data = db("fittings")->select();
-        return $this->view->fetch('FittingsIndex',['data'=>$data]);
+        return $this->view->fetch('fittings_index',['data'=>$data]);
     }
 	/**
 	 * 配件编辑操作
@@ -28,7 +28,7 @@ Class FittingsAdmin {
 			if($count == 1){
 				$id = $param['id'];
 				$data = db("fittings")->where('id',$id)->find();
-				return $this->view->fetch('FittingsEdit',['data' => $data]);
+				return $this->view->fetch('fittings_edit',['data' => $data]);
 			}
 			if($count > 1){
 				if(!is_numeric($param['number']) || !is_numeric($param['id'])){
