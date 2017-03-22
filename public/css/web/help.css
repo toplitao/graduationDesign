@@ -1,0 +1,35 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+body{font:14px/1.5 '微软雅黑';background:#f9f9f9;}
+.left {
+    float:left;
+    margin-top:2%
+}
+.right {
+    float:left;
+    border:1px #EEEEEE solid;
+    height:100%;
+    margin-left:2%;
+    margin-top:2%;
+}
+.right div {
+    margin-top:6%;
+}
+.right font {
+    font-size:24px;
+    font-weight:100;
+}
+.right h5 {
+    line-height:25px;
+}
+.baoyang {
+    float:left;
+    border:1px #EEEEEE solid;
+    height:100%;
+    margin-left:2%;
+    margin-top:2%;
+}
+.baoyang div div {
+    margin-top: 6%;
+    font-size: 18px;
+}

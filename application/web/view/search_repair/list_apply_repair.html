@@ -1,0 +1,70 @@
+{extend name="base" /}
+{block name="js_css"}
+ <link rel="stylesheet" href="{$Request.domain}/css/web/list.css">
+ <link rel="stylesheet" href="{$Request.domain}/css/web/common.css">
+{/block}
+{block name="title"}
+维修中心
+{/block}
+
+{block name="main"}
+<!--<div class="container">-->
+<section class="page_bg" id="main">
+    <article class="order_search">
+        <article class="wrap">
+            <form class="search emlay" action="/queryorder/queryOrder" method="post">
+                <div class="s_menu">
+					<span>维修订单</span><s></s>
+					<ul>
+						<li data-ordercategory="2">保修服务</li>
+						<li data-ordercategory="1">维修订单</li>
+					</ul>
+				</div>
+				<input type="hidden" name="orderCategory" id="orderCategory" value="1">
+				<input type="hidden" name="status" id="status" value="0">
+				<input type="hidden" name="currentPage" id="currentPage" value="1">
+				<input type="hidden" name="totalPage" id="totalPage" value="0">
+				<input type="hidden" name="totalRows" id="totalRows" value="0">
+                <input type="text" name="m" autocomplete="off" placeholder="请输入您的手机号查询您的订单" id="mobile" value="18883966624" class="text tips"><input type="submit" class="sub" value="查询">
+            </form>
+        </article>
+    </article>
+    <article class="wrap">
+   		<dl class="searchtype" id="searchtype">
+			<dd class="current" data-status="0"><a href="javascript:void(0);">所有订单</a>|</dd>
+			<dd data-status="1"><a href="javascript:void(0);">待邮寄 <small>（0）</small></a>|</dd><dd data-status="2"> <a href="javascript:void(0);">待支付 <small>（0）</small></a>|</dd><dd data-status="3"><a href="javascript:void(0);">待收货 <small>（0）</small></a>|</dd><dd data-status="4"><a href="javascript:void(0);">待评价 <small>（0）</small></a></dd> 
+		</dl>
+	    <div class="orderbox new_orderbox new_orderbox_bottom_line">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="order_table">
+        <colgroup>
+            <col width="180">
+            <col width="180">
+            <col>
+            <col width="180">
+            <col width="200">
+        </colgroup>
+        <thead>
+            <tr>
+            <th id="order_no">单号</th>
+            <th>下单时间</th>
+            <th>明细</th>
+            <th>费用（元）</th>
+            <th>状态</th>
+        </tr>
+        </thead>
+        <tbody class="h_active">
+            <tr style="display: table-row;">
+                <td colspan="5">未查询到记录</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="layout kuaid_lay" style="display: none;">
+        <s></s><p><img src="http://rs.jikexiu.com/resources/images/kuaid_big.jpg"></p>
+    </div>
+
+    </article>
+</section>
+<!--</div>-->
+{/block}
+
+

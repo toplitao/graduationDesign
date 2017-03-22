@@ -5,7 +5,7 @@ use think\Request;
 use think\View;
 use think\Db;
 use think\Session;
-use app\BaseController\CommonBase;
+use app\base\CommonBase;
 
 class SystemAdmin extends CommonBase
 {

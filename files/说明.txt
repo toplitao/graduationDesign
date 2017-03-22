@@ -16,6 +16,7 @@ files/repaircenter.sql:为数据库文件
 端口 3306
 用户名 root
 密码 toplitao
+数据库名 repair
 
 
 命名规则：
