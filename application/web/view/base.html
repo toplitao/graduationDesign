@@ -1,36 +1,79 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="{$Request.domain}/bootstrap-3.3.0/dist/jquery/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
-    {block name="js_css"}{/block}
-<title>{block name="title"}{/block}</title>
-</head>
-<body>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul style="list-style:none;float:left;">
-                <li style="margin-top: 0px;height: 40px;font-size: 40px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor: pointer">修</li>
-                <li><a href="">首页</a></li>
-                <li><a href="">报修</a></li>
-                <li><a href="">查询</a></li>
-                <li><a href="">服务流程</a></li>
-                <li><a href="tencent://message/?uin=842210495&Site=fdfdf&Menu=yes">联系客服</a></li>
-            </ul>
-        </div>
-    </div>
- <div class="main">
-    {block name="main"}主内容{/block}
- </div>
- <div class="footer">
-    {block name="footer"}底部{/block}
- </div>
-</body>
-<script>
-</script>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+	    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{$Request.domain}/css/web/reset.css">
+		<link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
+        {block name="js_css"}{/block}
+    	<title>{block name="title"}{/block}</title>
+    </head>
+    <body>
+		<header>
+			<div class="logo clearfix">
+				<img src="{$Request.domain}/media/img/logo.png"/>
+				<div class="name">
+					叁柒修<br/>37xiu.com
+				</div>	
+			</div>	
+			<ul>
+				<li><a herf="javascript:void(0)" class="active">首页</a></li>
+				<li><a herf="javascript:void(0)">保修</a></li>
+				<li><a herf="javascript:void(0)">查询</a></li>
+				<li><a herf="javascript:void(0)">帮助中心</a></li>
+				<li><a href="http://wpa.qq.com/msgrd?v=3&uin=312785362&site=qq&menu=yes">QQ客服</a></li>
+			</ul>	
+		</header>	
+		<div class="main">
+			{block name="main"}主内容{/block}
+		</div>
+		<footer class="clearfix">
+			<div class="content">
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">合作机构</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+				</ul>
+			</div>
+			<div class="contact">
+				<div class="tel">
+					4008-112-112
+				</div>
+				<div class="time">
+					服务时间：8:00-22:00
+				</div>
+				<div class="person">
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=312785362&site=qq&menu=yes">在线客服</a>
+				</div>			
+			</div>			
+		</footer>
+		<div class="footer-Copyright">
+			<div class="address">
+				Copyright<font>@</font>1900-2099 373.com, All Rights Reserved 重庆叁柒叁科技有限公司  重庆沙坪坝区重庆师范大学（大学城校区） 渝ICP备16014011号-2
+			</div>	
+			<div class="code">
+				<img src="{$Request.domain}/media/img/beian.png"/>
+				渝公网安备 50019002500273号
+			</div>	
+		</div>		
+    </body>
 </html>
