@@ -107,3 +107,139 @@ a:hover, a:active {
     color: #0ae;
     text-decoration: underline;
 }
+
+/**
+ * 头部样式
+ */
+header{
+    width: 100%;
+    text-align: center;
+    font-size: 0rem;
+}
+header .logo{
+    float: left;
+    margin-left: 10%;
+    width: 10%;
+}
+header .logo img{
+    float: left;
+    padding: 1rem 0rem;
+    width: 30px;
+    height: 30px;
+}
+header .logo .name{
+    float: left;
+    padding: 1rem 0rem;
+    font-size: 1rem;
+    color: #1766c3;
+}
+header ul{
+    float: right;
+    width: 80%;
+}
+header ul li{
+    display: inline-block;
+    padding: 1rem 4rem;
+}
+header ul li a{
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    font-size: 2rem;
+}
+header ul li a:hover{
+    text-decoration: none;
+    color: #1766c3;
+}
+header ul li a.active{
+    color: #1766c3;
+}
+
+/**
+ * 底部样式
+ */
+footer{
+    width: 100%;
+    font-size: 0px;
+    text-align: center;
+    margin-top: 3rem;
+}
+footer  .content{
+    float: left;
+    width: 70%;
+}
+footer .content ul{
+    display: inline-block;
+    width: 25%;
+    vertical-align:top;
+}
+footer .content ul{
+    font-size: 1.3rem;
+}
+footer .content ul li{
+    line-height: 2.2rem;
+}
+footer .content ul li a{
+    display: block;
+    color: gray;
+}
+footer .content ul li.title{
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: bold;
+}
+footer .content ul li a:hover{
+    color: #333;
+    text-decoration: none;
+}
+footer .contact{
+    float: right;
+    width: 30%;
+}
+footer .contact .tel{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+footer .contact .time{
+    color: gray;
+    font-size: 1rem;
+}   
+footer .contact .person{
+    font-size: 1rem;
+    line-height: 2.5rem;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    border: 1px #f60 solid;
+}
+footer .contact .person a{
+    display: block;
+    color:#f60;
+    transition:1s;
+}
+footer .contact .person a:hover{
+    text-decoration: none;
+    color: white;
+    background: #f60;
+}
+/**
+ * 版权信息
+ */
+ .footer-Copyright{
+     width: 100%;
+     padding: 2rem;
+     text-align: center;
+     color: gray;
+ }
+ .footer-Copyright font{
+     padding: 0rem 0.5rem;
+ }
+ .footer-Copyright .address{
+     padding: 1rem;
+ }
+ .footer-Copyright .code{
+     padding: 1rem;
+ }
