@@ -1,0 +1,31 @@
+{extend name="base" /}
+
+{block name="right"}
+     <div class="col-lg-10 right">
+	     <form id="index-forum">
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>配件名</th>
+						<th>剩余数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if(!empty($data)) { ?>
+			     		<?php foreach($data as $key => $value) {?>
+				     		<tr>
+				     			<td>{$value.id}</td>
+				     			<td>{$value.fittingsName}</td>
+				     			<td>{$value.number}</td>
+				     			<td><a edit_id="{$value.id}" class="edit_fitting">编辑</a><a del_id="{$value.id}" class="del_fitting">删除</a></td>
+				     		</tr>
+			     		<?php }?>
+     				<?php }?>
+				</tbody>
+			</table>
+		</form>
+	</div>	
+{/block}
+
