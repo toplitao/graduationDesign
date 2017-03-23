@@ -5,11 +5,13 @@ use think\Request;
 use think\View;
 use think\Db;
 use app\base\CommonBase;
+use think\Session;
 
 class Index extends CommonBase
 {
     protected $view;
     protected $request;
+    private $user;
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();
@@ -22,11 +24,19 @@ class Index extends CommonBase
     
     public function index()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
-        $address_info=db('linkaddress')->select();
-        return $this->view->fetch('index',['address'=>$address_info]);
+        $data['userinfo'] = $this->user;
+        return $this->view->fetch('index',$data);
+    }
+
+    /**
+     * 退出操作
+     */
+    public function loginout(){
+        Session::clear();
+        return $this->view->fetch('index@index/login');
     }
     public function repair_order() {
-        $uid = $this->user['uid'];
+        $uid = $this->user['id'];
         $where = array(
             'rid' => $uid,
             'status' => 3 //等待维修人员确认

@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-
-    <title>H+ 后台主题UI框架 - 主页</title>
-
+    <title>叁柒后台管理系统</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
-
     <link rel="shortcut icon" href="favicon.ico"> <link href="{$Request.domain}/css/admin/bootstrap.min.css" rel="stylesheet">
     <link href="{$Request.domain}/css/admin/font-awesome.min.css" rel="stylesheet">
     <link href="{$Request.domain}/css/admin/animate.css" rel="stylesheet">
     <link href="{$Request.domain}/css/admin/style.css" rel="stylesheet">
 </head>
-
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
         <!--左侧导航开始-->
@@ -31,10 +25,10 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="{$Request.domain}/media/img/admin/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="http://file.lysh.tech/static/img/admin/a5.jpg" width="70" height="70"/></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
+                               <span class="block m-t-xs"><strong class="font-bold">{$userinfo.username}</strong></span>
                                 <span class="text-muted text-xs block">维修员</span>
                                 </span>
                             </a>
@@ -372,7 +366,7 @@
                         </li>
                     </ul>
                 </div>-->
-                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                <a href="{$Request.domain}/admin/index/loginout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{$Request.domain}/admin/index/repair_order" frameborder="0" data-id="index_v1.html" seamless></iframe>
