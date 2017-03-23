@@ -1,40 +1,62 @@
-{extend name="../application/index/view/base.html" /}
-{block name="js_css"}
- <link rel="stylesheet" href="{$Request.domain}/css/index/login.css">
-{/block}
+<!DOCTYPE html>
+<html>
 
-{block name="title"}
-登录
-{/block}
+<head>
 
-{block name="content"}
-    <div class="admin_login_wrap">
-    <h1 align="center"><br>登录</h1>
-    <div class="adming_login_border">
-        <div class="admin_input">
-            <form action="{$Request.domain}/index/index/login" method="post" id='login-form'>
-                <ul class="admin_items">
-                    <li>
-                        <label for="user">用户名：</label>
-                        <input type="text" name="username" id="username" size="40" class="admin_input_style" />
-                    </li>
-                    <span id="user_span"></span>
-                    <li>
-                        <label for="pwd">密码：</label>
-                        <input type="password" name="password" id="password" size="40" class="admin_input_style" />
-                    </li>
-                    <span id="pass_span"></span>
-                    <li>
-                        <input type="button"  value="提交" class="btn btn-primary" id="submit-button" onclick="ajaxSendData('login-form','/index/index/login?type=login')"/>
-                    </li>
-                </ul>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 登录</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="{$Request.domain}/css/admin/bootstrap.min.css rel="stylesheet">
+    <link href="{$Request.domain}/css/admin/font-awesome.css" rel="stylesheet">
+
+    <link href="{$Request.domain}/css/admin/animate.css" rel="stylesheet">
+    <link href="{$Request.domain}/css/admin/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">H+</h1>
+
+            </div>
+            <h3>欢迎使用 H+</h3>
+
+            <form class="m-t" role="form" action="index.html">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="用户名" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+
+
+                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
+                </p>
+
             </form>
         </div>
-        <div style="float: right">
-             <a href="/index/index/register">注册新用户</a> | <a href="/index/index/forgetPassword">忘记密码</a>
-        </div>    
     </div>
-    <p class="admin_copyright"> &copy; 2016 Powered by cqnu</p>
-</div>
-<script src="/js/common/common.js"></script>
-{/block}   
+
+    <!-- 全局js -->
+    <script src="{$Request.domain}/js/admin/jquery.min.js"></script>
+    <script src="{$Request.domain}/js/admin/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+
+</body>
+
+</html>
