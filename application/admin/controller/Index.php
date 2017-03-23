@@ -8,13 +8,26 @@ use app\base\CommonBase;
 
 class Index extends CommonBase
 {
+    protected $view;
+    protected $request;
+    public function __construct(){
+        $this->view=new View;
+        $this->request=Request::instance();
+        if(!$this->_OnInit()){
+//            header('location:/index/index/login');
+        }else{
+            $this->user = $this->_OnInit();
+        }
+    }
+    
     public function index()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $address_info=db('linkaddress')->select();
         return $this->view->fetch('index',['address'=>$address_info]);
     }
     public function repair_order() {
-         $list = db('applyrepair')->where(['status'=>0])->paginate(5);
+        $uid = $this->user['uid'];
+         $list = db('applyrepair')->where(['rid'=>$uid])->paginate(5);
         return $this->view->fetch('repair_order',['list'=>$list]);
         
     }

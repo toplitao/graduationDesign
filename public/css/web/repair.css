@@ -74,7 +74,7 @@ h3 {
 .search_home {
     position: relative;
     width: 100%;
-    background: #fff url(/media/img/search_bg2.jpg) no-repeat center 0;
+    background: #fff url(http://file.lysh.tech/static/img/search_bg2.jpg) no-repeat center 0;
     background-size: 100%;
 }
 .search .text {
