@@ -1,0 +1,55 @@
+{extend name="base" /}
+{block name="js_css"}
+ <link rel="stylesheet" href="{$Request.domain}/css/web/repair.css">
+ <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="{$Request.domain}/bootstrap-3.3.0/dist/jquery/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+{/block}
+{block name="title"}
+报修中心
+{/block}
+
+{block name="main"}
+<div class="container">
+    <div class="repair">
+        <h3><img src="http://file.lysh.tech/static/img/repair.png" id="repair_img"> &nbsp;快速报修</h3> 
+        <form action="{$Request.domain}/web/apply_repair/insert_apply_repair" method="post" enctype="multipart/form-data">
+        <div class="repair_content">
+            <table class="table table-hover">
+                <tr>
+                    <td>产品型号</td>
+                    <td><input type="text" name="goods_type"></td>
+                    <td>购买时间</td>
+                    <td><input type="date" name="buy_time"></td>
+                </tr>
+            
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" name="customer_name"></td>
+                    <td>联系方式</td>
+                    <td><input type="text" name="tel_number"></td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td><input type="text" name="address"></td>
+                    <td>图片</td>
+                    <td><input type="file" name="picture"></td>
+                </tr>
+                <tr>
+                    <td>具体问题</td>
+                    <td colspan="3"><textarea  cols="3" class="form-control" rows="3" name="problem"></textarea></td>
+                </tr>
+                    <td></td>
+                    <td colspan="3" class="notice"><input  class="btn btn-primary" type="submit" value="确认下单">&nbsp;&nbsp; 提示：工作时间（8:00-22:00）内将有来自重庆区号023的电话与您联系确认详情！
+</td>
+                </tr>
+            </table>
+         </div>
+    </form>
+   </div>
+</div>
+{/block}
+
+

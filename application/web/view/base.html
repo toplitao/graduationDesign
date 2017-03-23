@@ -1,0 +1,101 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+	    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--<link rel="stylesheet" href="{$Request.domain}/css/web/reset.css">-->
+		<link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
+        {block name="js_css"}{/block}
+    	<title>{block name="title"}{/block}</title>
+    </head>
+    <body>
+		<nav>
+			<div class="content clearfix">
+				<div class="tel">
+					联系热线：4008-112-112
+				</div>
+				<div>
+					{if empty($userInfo)}
+						<ul>
+							<li><a href="{$Request.domain}/login">登录</a></li>
+							<li><a href="{$Request.domain}/register">快速注册</a></li>
+						</ul>
+					{else /}
+						<div class="loginout">
+							欢迎您：{if $userInfo.userType == 1}{$userInfo.name}{else /}{$userInfo.username}{/if}
+							<a href="/index/index/loginout">退出</a>
+						</div>
+					{/if}
+				</div>
+			</div>			
+		</nav>	
+		<header class="clearfix">
+			<div class="logo">
+				<img src="http://file.lysh.tech/static/img/logo.png"/>
+				<div class="name">
+					叁柒修<br/>37xiu.com
+				</div>	
+			</div>	
+			<ul>
+				<li><a href="{$Request.domain}/index/index/index" {if $code=="1"}class="active"{/if}>首页</a></li>
+				<li><a href="{$Request.domain}/web/apply_repair/write_apply_repair" {if $code=="2"}class="active"{/if}>报修中心</a></li>
+				<li><a href="{$Request.domain}/web/search_repair/search_apply_repair" {if $code=="3"}class="active"{/if}>查询</a></li>
+				<li><a href="{$Request.domain}/web/help/baoyang" {if $code=="4"}class="active"{/if}>帮助中心</a></li>
+				<!--<li><a href="http://wpa.qq.com/msgrd?v=3&uin=312785362&site=qq&menu=yes">QQ客服</a></li>-->
+				<li><a href="{$Request.domain}/web/stagnation_point/index" {if $code=="5"}class="active"{/if}>驻点信息</a>
+				<li><a href="{$Request.domain}/web/product_area/index" {if $code=="6"}class="active"{/if}>产品专区</a></li>
+			</ul>	
+		</header>	
+		<div class="main">
+			{block name="main"}主内容{/block}
+		</div>
+		<footer class="clearfix">
+			<div class="content">
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">合作机构</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+					<li><a href="#">服务协议</a></li>
+				</ul>
+				<ul>
+					<li class="title">关于我们</li>
+					<li><a href="#">公司介绍</a></li>
+					<li><a href="#">业务模式</a></li>
+				</ul>
+			</div>
+			<div class="contact">
+				<div class="tel">
+					4008-112-112
+				</div>
+				<div class="time">
+					服务时间：8:00-22:00
+				</div>
+				<div class="person">
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=312785362&site=qq&menu=yes">在线客服</a>
+				</div>			
+			</div>			
+		</footer>
+		<div class="footer-Copyright">
+			<div class="address">
+				Copyright<font>@</font>1900-2099 373.com, All Rights Reserved 重庆叁柒叁科技有限公司  重庆沙坪坝区重庆师范大学（大学城校区） 渝ICP备16014011号-2
+			</div>	
+			<div class="code">
+				<img src="http://file.lysh.tech/static/img/beian.png"/>
+				渝公网安备 50019002500273号
+			</div>	
+		</div>		
+    </body>
+</html>
