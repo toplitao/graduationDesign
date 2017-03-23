@@ -10,6 +10,7 @@ class ApplyRepair extends CommonBase
 {
     protected $view;
     protected $request;
+    private $user;
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();
@@ -43,8 +44,8 @@ class ApplyRepair extends CommonBase
         $data['uid']=$this->user['id'];
         $data['picture'] = $date.'/'.$info->getFilename();
         $data['inputtime'] = date('Y-m-d',time());
-       if($id=db('applyrepair')->insertGetId($data)){
-            $list = db('applyrepair')->where(['uid'=>$this->user['id']])->select();
+       if($id=db('apply_repair')->insertGetId($data)){
+            $list = db('apply_repair')->where(['uid'=>$this->user['id']])->select();
             return $this->view->fetch('web@feed_back/select_apply_repair',['list'=>$list]);
        }
     }
