@@ -32,21 +32,6 @@
                                 <span class="text-muted text-xs block">维修员</span>
                                 </span>
                             </a>
-                            <!--<ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-                                </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
-                                </li>
-                            </ul>-->
-                        </div>
-                        <div class="logo-element">H+
                         </div>
                     </li>
                     <li>
@@ -57,7 +42,13 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="{$Request.domain}/admin/index/repair_order" data-index="0">报修单</a>
+                                <a class="J_menuItem" href="{$Request.domain}/admin/index/repair_order" data-index="0">待接受报修单</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="{$Request.domain}/admin/index/repair_order?status=4" data-index="0">维修中报修单</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="{$Request.domain}/admin/index/finish_order" data-index="0">已完成报修单</a>
                             </li>
                             
                         </ul>
@@ -75,7 +66,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html">配件</a>
+                                <a class="J_menuItem" href="{$Request.domain}/admin/index/fittings_list">配件</a>
                             </li>
                             
                         </ul>

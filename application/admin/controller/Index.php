@@ -35,60 +35,50 @@ class Index extends CommonBase
         Session::clear();
         return $this->view->fetch('index@index/login');
     }
+    //未处理维修单
     public function repair_order() {
+        $data=$this->request->param();
+        if(!empty($data['status'])) {
+            $status = $data['status'];
+        }else{
+            $status = 3;
+        }
         $uid = $this->user['id'];
-        $where = array(
-            'rid' => $uid,
-            'status' => 3 //等待维修人员确认
-        );
-         $list = db('apply_repair')->where($where)->paginate(5);
+        $list = db('apply_repair')->where(['status'=>$status])->where(['user_id'=>$uid])->paginate(10);
         return $this->view->fetch('repair_order',['list'=>$list]);
         
     }
-
-    public function insert_apply_repair() {
-        $file = request()->file('picture');
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public/media/img');
-        $date = date('Ymd',time());
-
-        if($info){
-        // 成功上传后 获取上传信息
-        // 输出 jpg
-        }else{
-        // 上传失败获取错误信息
-        echo $file->getError();
-        }
+    //维修完成
+    public function finish_order() {
         $data=$this->request->param();
-        $data['uid']=$this->user['id'];
-        $data['picture'] = $date.'/'.$info->getFilename();
-        $data['inputtime'] = date('Y-m-d',time());
-       if($id=db('applyrepair')->insertGetId($data)){
-            $list = db('applyrepair')->where(['uid'=>$this->user['id']])->select();
-            return $this->view->fetch('web@feed_back/select_apply_repair',['list'=>$list]);
-       }
+        db('apply_repair')->where('id',$data['aid'])->update(['status' => 5]);
+        $uid = $this->user['id'];
+        $list = db('apply_repair')->where(['status'=>5])->where(['user_id'=>$uid])->paginate(10);
+        return $this->view->fetch('repair_order',['list'=>$list]);
     }
-    
-    public function delete_apply_repair()
-    {       
+    //配件
+    public function fittings_list() {
         $data=$this->request->param();
-        if(db('applyrepair')->delete($data['id'])){  // 根据主键删除  // 条件删除：db('applyrepair')->where('id',1)->delete();    
-            return $this->view->fetch('success_delete_apply_repair');
-        }
+        $list = db('fittings')->paginate(5);
+        return $this->view->fetch('fittings_list',array('list'=>$list,'aid'=> $data['aid']));
     }
-
-    public function select_apply_repair()
-    {    
-        $data=$this->request->param();
-        $db_data=db('applyrepair')->find($data['id']);  // 根据主键查询（ find查询为空返回null,select返回[] ）  // 条件查询：db('applyrepair')->where('id',1)->find();   
-        return $this->view->fetch('success_select_apply_repair',['data'=>$db_data]);//如果使用select ,这里应该['data'=>$db_data[0]]
+    //确认维修
+    public function confirm_repair() {
+         $data=$this->request->param();
+         $fittings = substr($data['fittings'],1);
+         $fittings_arr = explode(':',$fittings);
+         for($i=0;$i<count($fittings_arr);$i++) {
+             $fittings_data = explode(',',$fittings_arr[$i]);
+             $result = db('fittings')->where('id',$fittings_data[0])->find();//搜索原数据
+             $number = $result['number'] - $fittings_data[1];
+             db('fittings')->where('id',$fittings_data[0])->update(['number' => $number]);//修改配件库存数量
+             $inser = ['oid' => $data['aid'], 'fid' => $fittings_data[0],'created_at' => date(),'number' => $fittings_data[1]];
+             db('fitting')->insert($insert);
+         }
+         if(db('apply_repair')->where('id',$data['aid'])->update(['status' => 4])) {
+            echo json_encode(array('status'=> 1,'msg'=>'接单成功'));
+         }else{
+             echo json_encode(array('status'=> 2,'msg'=>'接单失败'));
+         }
     }
-
-    public function update_apply_repair()
-    {    
-        $data=$this->request->param();
-        $db_data=db('applyrepair')->update($data);  // data包含主键更新，没有id请使用 where('id',1)->update() 
-        return $this->view->fetch('success_update_apply_repair',['id'=>$data['id']]);
-    }
-
 }
