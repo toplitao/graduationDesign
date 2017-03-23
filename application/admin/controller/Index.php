@@ -27,7 +27,11 @@ class Index extends CommonBase
     }
     public function repair_order() {
         $uid = $this->user['uid'];
-         $list = db('applyrepair')->where(['rid'=>$uid])->paginate(5);
+        $where = array(
+            'rid' => $uid,
+            'status' => 3 //等待维修人员确认
+        );
+         $list = db('apply_repair')->where($where)->paginate(5);
         return $this->view->fetch('repair_order',['list'=>$list]);
         
     }
