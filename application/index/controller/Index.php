@@ -8,20 +8,19 @@ use think\Session;
 use think\Request;
 
 class Index extends CommonBase{
-    protected $view;
-    protected $request;
-    private $user;
+    private $userinfo;
     public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
+        parent::__construct();
         if(!$this->_OnInit()){
-            $this->login();
+            echo "<script>请先进行登录</script>";
+            return false;
         }else{
-            $this->user = $this->_OnInit();
+            $this->userinfo = $this->_OnInit();
         }
+
     }
     public function index(){
-        $data['userInfo'] = $this->user;
+        $data['userInfo'] = $this->userinfo;
         $data['code'] = 1;
         return $this->view->fetch('web@home/home',$data);
     }

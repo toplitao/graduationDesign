@@ -1,0 +1,123 @@
+{extend name="base" /}
+
+{block name="js_css"}
+<link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="{$Request.domain}/bootstrap-3.3.0/dist/jquery/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+<!--弹出框插件文件-->
+<script src="/layer-v3.0.1/layer/layer.js"></script>
+<script src="/js/admin/layer_dialog.js"></script>
+{/block}
+
+{block name="title"}
+产品专区
+{/block}
+
+{block name="main"}
+<div class="container">
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="product">
+            <a href="javascript:void(0)">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>iphoneSE</p>
+        </div>
+    </div>
+</div>
+<script src="{$Request.domain}/js/common/common.js"></script>
+<style>
+    .container{
+        font-size: 0rem;
+    }
+    .container .item{
+        width: 20%;
+        display: inline-block;
+    }
+    .container div.item .product{
+        padding: 1rem;
+    }
+    .container div.item .product a{
+        display: block;
+    }
+    .container div.item .product p{
+        text-align: center;
+        font-size: 1rem;
+        padding: 1rem 0rem;
+    }
+     /*.container{*/
+         /*margin-top: 2rem;*/
+         /*margin-bottom: 2rem;*/
+         /*font-size: 0rem;*/
+     /*}*/
+     /*.container div{*/
+         /*display: inline-block;*/
+         /*width: 18%;*/
+         /*height: 20rem;*/
+         /*font-size: 1rem;*/
+         /*transition: 1s;*/
+         /*margin-left: 2%;*/
+     /*}*/
+     /*.container div:hover{*/
+         /*border: 4px solid #bc0000;*/
+     /*}*/
+    /*.container div a{*/
+        /*display: block;*/
+        /*cursor: pointer;*/
+    /*}*/
+    /*.container div p{*/
+        /*padding: 1rem 0rem;*/
+        /*font-size: 1rem;*/
+        /*text-align: center;*/
+    /*}*/
+</style>
+{/block}

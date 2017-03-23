@@ -3,15 +3,28 @@
  <link rel="stylesheet" href="{$Request.domain}/css/web/reset.css">
  <link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
  <link rel="stylesheet" href="{$Request.domain}/css/web/index.css">
+ <link rel="stylesheet" href="{$Request.domain}/OwlCarousel2-2.2.1/dist/assets/owl.carousel.css" />
+ <link rel="stylesheet" href="{$Request.domain}/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.css" />
 {/block}
 {block name="title"}首页{/block}
 {block name="main"}
 	<div class="banner">
-		<ul>
-			<li><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>
-			<li style="display: none"><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>
-			<li style="display: none"><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>
-		</ul>	
+		<!--<ul class="owl-carousel">-->
+			<!--<li><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>-->
+			<!--<li><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>-->
+			<!--<li><img src="http://file.lysh.tech/static/img/banner1.jpg" /></li>-->
+		<!--</ul>-->
+		<div class="owl-carousel owl-theme">
+			<div>
+				<img src="http://file.lysh.tech/static/img/banner1.jpg" />
+			</div>
+			<div>
+				<img src="http://file.lysh.tech/static/img/banner2.jpg" />
+			</div>
+			<div>
+				<img src="http://file.lysh.tech/static/img/banner3.jpg" />
+			</div>
+		</div>
 	</div>
 	<div class="introduce">
 		<div class="content">
@@ -65,5 +78,18 @@
 				<li><img src="http://file.lysh.tech/static/img/e_logo12.jpg"></li>
 			</ul>	
 		 </div>		 
-	</div>						
+	</div>
+	<script src="{$Request.domain}/js/admin/jquery.min.js"></script>
+	<script src="{$Request.domain}/OwlCarousel2-2.2.1/dist/owl.carousel.js"></script>
+	<script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items:1,
+                autoplay:true,
+				loop:true,
+                autoplayTimeout:3000,
+//                autoplayHoverPause:true,
+			});
+        });
+	</script>
 {/block}

@@ -8,23 +8,21 @@ use app\base\CommonBase;
 
 class ApplyRepair extends CommonBase
 {
-    protected $view;
-    protected $request;
-    private $user;
+    private $userinfo;
     public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
+        parent::__construct();
         if(!$this->_OnInit()){
-//            header('location:/index/index/login');
+            echo "<script>请先进行登录</script>";
+            return false;
         }else{
-            $this->user = $this->_OnInit();
+            $this->userinfo = $this->_OnInit();
         }
-    }
 
+    }
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $address_info=db('linkaddress')->select();
-        return $this->view->fetch('write_apply_repair',['address'=>$address_info,'code'=>2,'userInfo'=>$this->user]);
+        return $this->view->fetch('write_apply_repair',['address'=>$address_info,'code'=>2,'userInfo'=>$this->userinfo]);
     }
 
     public function insert_apply_repair() {
@@ -41,11 +39,11 @@ class ApplyRepair extends CommonBase
         echo $file->getError();
         }
         $data=$this->request->param();
-        $data['uid']=$this->user['id'];
+        $data['uid']=$this->userinfo['id'];
         $data['picture'] = $date.'/'.$info->getFilename();
         $data['inputtime'] = date('Y-m-d',time());
-       if($id=db('apply_repair')->insertGetId($data)){
-            $list = db('apply_repair')->where(['uid'=>$this->user['id']])->select();
+       if($id=db('applyrepair')->insertGetId($data)){
+            $list = db('applyrepair')->where(['uid'=>$this->userinfo['id']])->select();
             return $this->view->fetch('web@feed_back/select_apply_repair',['list'=>$list]);
        }
     }

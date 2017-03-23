@@ -6,25 +6,24 @@ use think\View;
 use think\Db;
 use app\base\CommonBase;
 
-class Help extends CommonBase
-{
-    protected $view;
-    protected $request;
+class Help extends CommonBase{
+    private $userinfo;
     public function __construct(){
-        $this->view=new View;
-        $this->request=Request::instance();
+        parent::__construct();
         if(!$this->_OnInit()){
-//            header('location:/index/index/login');
+            echo "<script>请先进行登录</script>";
+            return false;
         }else{
-            $this->user = $this->_OnInit();
+            $this->userinfo = $this->_OnInit();
         }
+
     }
     public function question() {
         return $this->view->fetch('question');
     }
     public function baoyang() {
         $data['code'] = 4;
-        $data['userInfo'] = $this->user;
+        $data['userInfo'] = $this->userinfo;
         return $this->view->fetch('baoyang',$data);
     }
 
