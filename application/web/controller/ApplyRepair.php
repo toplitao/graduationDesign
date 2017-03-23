@@ -8,10 +8,22 @@ use app\base\CommonBase;
 
 class ApplyRepair extends CommonBase
 {
+    protected $view;
+    protected $request;
+    public function __construct(){
+        $this->view=new View;
+        $this->request=Request::instance();
+        if(!$this->_OnInit()){
+//            header('location:/index/index/login');
+        }else{
+            $this->user = $this->_OnInit();
+        }
+    }
+
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $address_info=db('linkaddress')->select();
-        return $this->view->fetch('write_apply_repair',['address'=>$address_info]);
+        return $this->view->fetch('write_apply_repair',['address'=>$address_info,'code'=>2,'userInfo'=>$this->user]);
     }
 
     public function insert_apply_repair() {

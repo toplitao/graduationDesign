@@ -27,5 +27,6 @@ Route::get('/login',function(View $view){
     return $view->fetch('index@index/login');
 });
 Route::get('/',function(View $view){
-    return $view->fetch('web@home/home');
+    $data['code'] = 1;
+    return $view->fetch('web@home/home',$data);
 });

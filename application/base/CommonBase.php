@@ -10,13 +10,20 @@ class CommonBase extends Controller
 {
     protected function _OnInit(){
         $param = $this->request->param();
-        if($param == 'login'){
+        if(isset($param['type']) && $param['type'] == 'login'){
             return false;
         }else{
-            $uid=Session::get('uid');
-            $user=db('user')->where('id',$uid)->find();
+            $userinfo = Session::get('userinfo');
+//            //普通用户
+//            if($userinfo['userType'] == 1){
+//                $user = db('user_info')->where('id',$userinfo['id'])->find();
+//            }
+//            //维修人员
+//            if($userinfo['userType'] == 2){
+//                $user = db('user')->where('id',$userinfo['id'])->find();
+//            }
+            return $userinfo;
         }
-        $this->user=$user;
     }
     
 

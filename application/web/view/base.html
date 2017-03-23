@@ -22,7 +22,7 @@
 						</ul>
 					{else /}
 						<div class="loginout">
-							欢迎您：{$userInfo.username}
+							欢迎您：{if $userInfo.userType == 1}{$userInfo.name}{else /}{$userInfo.username}{/if}
 							<a href="/index/index/loginout">退出</a>
 						</div>
 					{/if}
@@ -37,10 +37,10 @@
 				</div>	
 			</div>	
 			<ul>
-				<li><a href="{$Request.domain}" class="active">首页</a></li>
-				<li><a href="{$Request.domain}/web/apply_repair/write_apply_repair">报修</a></li>
-				<li><a href="{$Request.domain}/web/search_repair/search_apply_repair">查询</a></li>
-				<li><a href="{$Request.domain}/web/help/baoyang">帮助中心</a></li>
+				<li><a href="{$Request.domain}/index/index/index" {if $code=="1"}class="active"{/if}>首页</a></li>
+				<li><a href="{$Request.domain}/web/apply_repair/write_apply_repair" {if $code=="2"}class="active"{/if}>报修</a></li>
+				<li><a href="{$Request.domain}/web/search_repair/search_apply_repair" {if $code=="3"}class="active"{/if}>查询</a></li>
+				<li><a href="{$Request.domain}/web/help/baoyang" {if $code=="4"}class="active"{/if}>帮助中心</a></li>
 				<li><a href="http://wpa.qq.com/msgrd?v=3&uin=312785362&site=qq&menu=yes">QQ客服</a></li>
 			</ul>	
 		</header>	

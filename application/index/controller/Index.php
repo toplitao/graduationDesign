@@ -10,30 +10,39 @@ use think\Request;
 class Index extends CommonBase{
     protected $view;
     protected $request;
+    private $user;
     public function __construct(){
         $this->view=new View;
         $this->request=Request::instance();
         if(!$this->_OnInit()){
-//            header('location:/index/index/login');
+            $this->login();
         }else{
             $this->user = $this->_OnInit();
         }
     }
     public function index(){
         $data['userInfo'] = $this->user;
+        $data['code'] = 1;
         return $this->view->fetch('web@home/home',$data);
     }
     public function login(){
-        $data=$this->request->param();
+        $data = $this->request->param();
         $data['password'] = md5($data['password']);
-        $user=DB('user')->where('username',$data['username'])
-        ->where('password',$data['password'])
-        ->find();
+        //普通用户
+        if($data['userType'] == 1){
+            $user=DB('user_info')->where('name',$data['username'])->where('password',$data['password'])->find();
+        }
+        //维修人员
+        if($data['userType'] == 2){
+            $user=DB('user')->where('username',$data['username'])->where('password',$data['password'])->find();
+        }
         if(!empty($user)){
-            Session::set('uid',$user['id']);
-            if($user['level'] == 1){ //普通用户
+            $user['userType'] = $data['userType'];
+            Session::set('userinfo',$user);
+            if($user['userType'] == 1){ //普通用户
                 $url = '/index/index/index';
-            }else{//维修人员
+            }
+            if($user['userType'] == 2){//维修人员
                 $url = '/admin/index/index';
             }
             return dr_show_return('200','登录成功',array('url'=>$url));
@@ -43,7 +52,8 @@ class Index extends CommonBase{
     }
     public function loginout(){
         Session::clear();
-        return $this->view->fetch('web@home/home');
+        $data['code'] = 1;
+        return $this->view->fetch('web@home/home',$data);
     }
     /*
      * 注册新用户操作
