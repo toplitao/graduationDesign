@@ -2,7 +2,7 @@
 namespace app\Web\Controller;
 
 use app\base\CommonBase;
-
+use think\Session;
 class ApplyRepair extends CommonBase
 {
     private $userinfo;
@@ -13,10 +13,12 @@ class ApplyRepair extends CommonBase
         }
     }
 
-    public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
-    {
-        $address_info=db('linkaddress')->select();
-        return $this->view->fetch('write_apply_repair',['address'=>$address_info,'code'=>2,'userInfo'=>$this->userinfo]);
+    //方法访问路径 http://localhost/web/apply_repair/write_apply_repair
+    public function write_apply_repair(){
+        if(!Session::get('userinfo')){
+            return $this->view->fetch('index@index/login');
+        }
+        return $this->view->fetch('write_apply_repair',['code'=>2,'userInfo'=>$this->userinfo]);
     }
 
     public function insert_apply_repair() {
@@ -24,13 +26,12 @@ class ApplyRepair extends CommonBase
         // 移动到框架应用根目录/public/uploads/ 目录下
         $info = $file->move(ROOT_PATH . 'public/media/img');
         $date = date('Ymd',time());
-
         if($info){
-        // 成功上传后 获取上传信息
-        // 输出 jpg
+            // 成功上传后 获取上传信息
+            // 输出 jpg
         }else{
-        // 上传失败获取错误信息
-        echo $file->getError();
+            // 上传失败获取错误信息
+            echo $file->getError();
         }
         $data=$this->request->param();
         $data['uid']=$this->userinfo['id'];

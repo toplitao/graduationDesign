@@ -37,7 +37,8 @@ class SearchRepair extends CommonBase{
     public function show_apply_repair(){
         $data['code'] = 3;
         $data['moblie'] = Session::get('moblie');
-        $data['userinfo'] = $this->userinfo;
+        $data['userInfo'] = $this->userinfo;
+
         return $this->view->fetch('list_apply_repair',$data);
     }
     
