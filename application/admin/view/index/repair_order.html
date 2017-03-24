@@ -66,7 +66,14 @@
                                         维修完成
                                         </a>
                                     </td>
-                                    {else }
+                                    {elseif condition="$vo.status == 5"/}
+                                    <td>
+                                        维修完成
+                                        <a href="{$Request.domain}/admin/index/finish_repair?aid={$vo.id}" class="btn btn-primary">
+                                       发货
+                                        </a>
+                                    </td>
+                                    {else}
                                     {/if}
                                 </tr>
                                 {/volist}

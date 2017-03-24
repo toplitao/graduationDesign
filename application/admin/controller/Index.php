@@ -35,13 +35,13 @@ class Index extends CommonBase
         Session::clear();
         return $this->view->fetch('index@index/login');
     }
-    //未处理维修单
+    //维修单管理
     public function repair_order() {
         $data=$this->request->param();
         if(!empty($data['status'])) {
             $status = $data['status'];
         }else{
-            $status = 3;
+            $status = 3;//未处理维修单
         }
         $uid = $this->user['id'];
         $list = db('apply_repair')->where(['status'=>$status])->where(['user_id'=>$uid])->paginate(10);
@@ -49,7 +49,7 @@ class Index extends CommonBase
         
     }
     //维修完成
-    public function finish_order() {
+    public function finish_repair() {
         $data=$this->request->param();
         db('apply_repair')->where('id',$data['aid'])->update(['status' => 5]);
         $uid = $this->user['id'];
@@ -60,7 +60,14 @@ class Index extends CommonBase
     public function fittings_list() {
         $data=$this->request->param();
         $list = db('fittings')->paginate(5);
-        return $this->view->fetch('fittings_list',array('list'=>$list,'aid'=> $data['aid']));
+        if(!empty($data['aid'])) {
+            $aid = $data['aid'];
+            return $this->view->fetch('fittings_list',array('list'=>$list,'aid'=> $aid));
+        }else{
+            $aid = 0;
+            return $this->view->fetch('fittings_list',array('list'=>$list,'aid'=> $aid));
+        }
+        
     }
     //确认维修
     public function confirm_repair() {
