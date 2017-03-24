@@ -1,0 +1,43 @@
+{extend name="../application/web/view/base.html" /}
+
+{block name="js_css"}
+ <link rel="stylesheet" href="{$Request.domain}/css/web/help.css">
+ <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+ <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+ <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+{/block}
+
+{block name="title"}
+{__block__}
+帮助中心
+{/block}
+
+{block name="main"}
+    <div class="container">
+        <div class="list-group col-md-2 left">
+            <a href="#" class="list-group-item disabled">
+                帮助中心
+            </a>
+            <a href="/web/help/question" class="list-group-item">常见问题</a>
+            <a href="/web/help/baoyang" class="list-group-item">如何保养</a>
+            <a href="/web/help/about" class="list-group-item" style="background:#EEEEEE;">关于我们</a>
+        </div>
+        <div class="col-md-9 right" style="overflow: auto;">
+            <div>
+                <font>关于维修中心</font><br>
+                <h5>目前，三柒修开通的维修产品线包括苹果iPhone、iPad、小米手机、三星手机、华为手机、乐视、OPPO、vivo、努比亚、魅族手机，并正在积极准备其他产品的上线。同时我们还在全国30余个城市建有维修中心，支持本地上门维修，其他省市用户支持邮寄维修。三柒修平台已入驻有数百名专业维修工程师，全部经过考核认证，熟悉手机原理及硬件结构，可准确的判断出故障所在，高质量完成维修。</h5>
+            </div>
+            <div>
+                <font>关于零配件</font><br>
+                <h5>三柒修一律采用原厂品质零配件，维修故障点终身质保，维修全程视频录像。极客修在更换维修配件时严格把关，拆机过程也是力求做到精益求精，不损伤机器的外观;修复后，对机器进行全面的功能性检测，以防出现其他问题。
+</h5>
+            </div>
+            <div>
+                <font>我们的使命</font><br>
+                <h5>三柒修致力于解决数码产品令人头痛的售后维修问题，为用户提供高品质数码维修服务。 </h5>
+            </div>
+        
+
+        </div>
+    </div>
+{/block}

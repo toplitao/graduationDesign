@@ -23,5 +23,10 @@ class Help extends CommonBase{
         $data['userInfo'] = $this->userinfo;
         return $this->view->fetch('baoyang',$data);
     }
+    public function about() {
+        $data['code'] = 4;
+        $data['userInfo'] = $this->userinfo;
+        return $this->view->fetch('about',$data);
+    }
 
 }
