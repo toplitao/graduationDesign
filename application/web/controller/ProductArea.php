@@ -25,5 +25,10 @@ class ProductArea extends CommonBase{
         $data['userInfo'] = $this->userinfo;
         return $this->view->fetch('index',$data);
     }
+    public function description() {
+        $data['code'] = 6;
+        $data['userInfo'] = $this->userinfo;
+        return $this->view->fetch('description',$data);
+    }
 
 }

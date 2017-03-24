@@ -24,5 +24,11 @@ class StagnationPoint extends CommonBase{
         $data['userInfo'] = $this->userinfo;
         return $this->view->fetch('index',$data);
     }
+    public function description() {
+        $data['code'] = 5;
+        $data['userInfo'] = $this->userinfo;
+        return $this->view->fetch('description',$data);
+
+    }
 
 }

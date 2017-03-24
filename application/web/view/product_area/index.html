@@ -12,9 +12,10 @@
 
 {block name="main"}
 <div class="container">
+    
     <div class="item">
         <div class="product">
-            <a href="javascript:void(0)">
+            <a href="{$Request.domain}/web/product_area/description">
                 <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
             </a>
             <p>iphoneSE</p>
@@ -71,6 +72,10 @@
 </div>
 <script src="{$Request.domain}/js/common/common.js"></script>
 <style>
+    header .logo img {
+        width: 35px;
+        height: 50px;
+    }
     .container{
         font-size: 0rem;
     }

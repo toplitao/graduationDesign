@@ -1,0 +1,53 @@
+{extend name="base" /}
+
+{block name="js_css"}
+<link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+{/block}
+
+{block name="title"}
+产品专区
+{/block}
+
+{block name="main"}
+<div class="container">
+    <div class="description">
+        <dl class="dl-horizontal">
+            <dt>驻 &nbsp;&nbsp;点:</dt>
+            <dd>重庆驻点</dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>负责人:</dt>
+            <dd>
+                <label>姓名：</label><span>huangcq</span> &nbsp;
+                <label>电话：</label><span>18883966624</span>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>照 &nbsp;&nbsp;片:</dt>
+            <dd><img src="http://file.lysh.tech/static/img/banner1.jpg" width="100%"></dd>
+            <dd><img src="http://file.lysh.tech/static/img/banner2.jpg" width="100%"></dd>
+        </dl>
+    </div>
+</div>
+<script src="{$Request.domain}/js/common/common.js"></script>
+<style>
+    .container{
+        padding: 20px;
+        /*margin-top: 10px;*/
+        /*border: 1px #5b5b5b solid;*/
+    }
+    header .logo img {
+        width: 35px;
+        height: 50px;
+    }
+    .dl-horizontal {
+        width: 1000px;
+        margin-top: 30px;
+    }
+    .dl-horizontal dt {
+        font-size: 20px;
+    }
+</style>
+{/block}
