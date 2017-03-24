@@ -17,13 +17,8 @@ class CommonBase extends Controller{
     }
 
     protected function _OnInit(){
-        $param = $this->request->param();
-        if(isset($param['type']) && $param['type'] == 'login'){
-            return false;
-        }else {
-            $userinfo = Session::get('userinfo');
-            return $userinfo;
-        }
+        $userinfo = Session::get('userinfo');
+        return $userinfo;
     }
     
 
