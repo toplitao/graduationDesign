@@ -1,22 +1,16 @@
 <?php
 namespace app\Web\Controller;
 
-use think\Request;
-use think\View;
-use think\Db;
 use app\base\CommonBase;
 
 class FeedBack extends CommonBase{
-    public $userinfo;
+
+    private $userinfo;
     public function __construct(){
         parent::__construct();
-//        $this->view=new View;
-//        $this->request=Request::instance();
-//        if(!$this->_OnInit()){
-//            echo '无效信息！';
-//        }else{
-//            $this->user = $this->_OnInit();
-//        }
+        if($this->_OnInit()) {
+            $this->userinfo = $this->_OnInit();
+        }
     }
     //该用户所有维修单
     public function select_apply_repair() {

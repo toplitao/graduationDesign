@@ -1,9 +1,6 @@
 <?php
 namespace app\Web\Controller;
 
-use think\Request;
-use think\View;
-use think\Db;
 use app\base\CommonBase;
 
 class ApplyRepair extends CommonBase
@@ -11,14 +8,11 @@ class ApplyRepair extends CommonBase
     private $userinfo;
     public function __construct(){
         parent::__construct();
-        if(!$this->_OnInit()){
-            echo "<script>请先进行登录</script>";
-            return false;
-        }else{
+        if($this->_OnInit()) {
             $this->userinfo = $this->_OnInit();
         }
-
     }
+
     public function write_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $address_info=db('linkaddress')->select();

@@ -1,7 +1,6 @@
 <?php
 namespace app\base;
 
-use think\Db;
 use think\Session;
 use think\Controller;
 use think\Request;

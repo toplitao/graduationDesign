@@ -1,23 +1,16 @@
 <?php
 namespace app\index\Controller;
+
 use app\base\CommonBase;
-use think\View;
-use think\DB;
-use think\Url;
 use think\Session;
-use think\Request;
 
 class Index extends CommonBase{
     private $userinfo;
     public function __construct(){
         parent::__construct();
-        if(!$this->_OnInit()){
-            echo "<script>请先进行登录</script>";
-            return false;
-        }else{
+        if($this->_OnInit()) {
             $this->userinfo = $this->_OnInit();
         }
-
     }
     public function index(){
         $data['userInfo'] = $this->userinfo;

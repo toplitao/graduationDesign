@@ -1,26 +1,21 @@
 <?php
 namespace app\Web\Controller;
 
-use think\Request;
-use think\View;
-use think\Db;
 use app\base\CommonBase;
 use think\Session;
-class SearchRepair extends CommonBase
-{
-    private $preg_phone;
+
+class SearchRepair extends CommonBase{
+
     private $userinfo;
+    private $preg_phone;
     public function __construct(){
-        parent::__construct();
         $this->preg_phone = '/^(13|15|18|17)\d{9}$/';
-        if(!$this->_OnInit()){
-            echo "<script>请先进行登录</script>";
-            return false;
-        }else{
+        parent::__construct();
+        if($this->_OnInit()) {
             $this->userinfo = $this->_OnInit();
         }
-
     }
+
     public function search_apply_repair()//方法访问路径 http://localhost/web/apply_repair/write_apply_repair
     {
         $data['code'] = 3;

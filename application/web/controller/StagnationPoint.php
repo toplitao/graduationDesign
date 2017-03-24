@@ -7,9 +7,6 @@
  */
 namespace app\Web\Controller;
 
-use think\Request;
-use think\View;
-use think\Db;
 use app\base\CommonBase;
 
 class StagnationPoint extends CommonBase{
@@ -17,17 +14,14 @@ class StagnationPoint extends CommonBase{
     private $userinfo;
     public function __construct(){
         parent::__construct();
-        if(!$this->_OnInit()){
-            echo "<script>请先进行登录</script>";
-            return false;
-        }else{
+        if($this->_OnInit()) {
             $this->userinfo = $this->_OnInit();
         }
-
     }
 
     public function index() {
         $data['code'] = 5;
+        $data['userInfo'] = $this->userinfo;
         return $this->view->fetch('index',$data);
     }
 
