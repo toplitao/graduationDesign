@@ -1,6 +1,12 @@
 /**
  * Created by ssl on 2017/3/22.
  */
+
+/**
+ * 通用的ajax表单请求函数
+ * @param FormId  表单ID
+ * @param url   ajax请求的接口地址
+ */
 function ajaxSendData(FormId,url){
     var data = $("#"+FormId).serializeArray();
     var postData = {};
@@ -15,4 +21,5 @@ function ajaxSendData(FormId,url){
             return dialog.error(result.msg);
         }
     },'json');
-}
+};
+

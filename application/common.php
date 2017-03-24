@@ -32,3 +32,40 @@
     res:	
 	exit(json_encode($return,JSON_UNESCAPED_UNICODE));
 }
+
+/**
+ * 获取订单状态函数
+ * @param $status  订单状态(int)
+ */
+function getStatus($status){
+    switch($status){
+        case 1:
+            $code =  '等待确认';
+            break;
+        case 2:
+            $code = '等待分配';
+            break;
+        case 3:
+            $code = '等待维修人员确认';
+            break;
+        case 4:
+            $code = '维修人员确认';
+            break;
+        case 5:
+            $code = '维修完成';
+            break;
+        case 6:
+            $code = '已寄回';
+            break;
+        case 7:
+            $code = '待评价';
+            break;
+        case 8:
+            $code = '已完成';
+            break;
+        default:
+            $code = '未知状态';
+            break;
+    }
+    return $code;
+}

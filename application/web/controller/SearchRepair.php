@@ -38,7 +38,7 @@ class SearchRepair extends CommonBase{
         $data['code'] = 3;
         $data['moblie'] = Session::get('moblie');
         $data['userInfo'] = $this->userinfo;
-
+        $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
         return $this->view->fetch('list_apply_repair',$data);
     }
     

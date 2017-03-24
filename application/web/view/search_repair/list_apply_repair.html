@@ -27,31 +27,53 @@
     <article class="wrap">
         <dl class="searchtype" id="searchtype">
             <dd class="current" data-status="0"><a href="javascript:void(0);">所有订单</a>|</dd>
-            <dd data-status="1"><a href="javascript:void(0);">待邮寄 <small>（0）</small></a>|</dd><dd data-status="2"> <a href="javascript:void(0);">待支付 <small>（0）</small></a>|</dd><dd data-status="3"><a href="javascript:void(0);">待收货 <small>（0）</small></a>|</dd><dd data-status="4"><a href="javascript:void(0);">待评价 <small>（0）</small></a></dd>
+            <dd data-status="1">
+                <a href="javascript:void(0);">待邮寄 <small>（0）</small></a>|
+            </dd>
+            <dd data-status="2">
+                <a href="javascript:void(0);">待支付 <small>（0）</small></a>|
+            </dd>
+            <dd data-status="3">
+                <a href="javascript:void(0);">待收货 <small>（0）</small></a>|
+            </dd>
+            <dd data-status="4">
+                <a href="javascript:void(0);">待评价 <small>（0）</small></a>
+            </dd>
         </dl>
         <div class="orderbox new_orderbox new_orderbox_bottom_line">
             <table width="100%" cellspacing="0" cellpadding="0" border="0" class="order_table">
-                <colgroup>
-                    <col width="180">
-                    <col width="180">
-                    <col>
-                    <col width="180">
-                    <col width="200">
-                </colgroup>
                 <thead>
                     <tr>
-                    <th id="order_no">单号</th>
-                    <th>下单时间</th>
-                    <th>明细</th>
-                    <th>费用（元）</th>
-                    <th>状态</th>
-                </tr>
-                </thead>
-                <tbody class="h_active">
-                    <tr style="display: table-row;">
-                        <td colspan="5">未查询到记录</td>
+                        <th id="order_no" style="text-align: center">单号</th>
+                        <th style="text-align: center">下单时间</th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">原因</th>
+                        <th style="text-align: center">返单号</th>
+                        <th style="text-align: center">状态</th>
                     </tr>
+                </thead>
+                {if !empty($list)}
+                <tbody>
+                    <?php foreach($list as $key => $value){ ?>
+                        <tr>
+                            <td style="text-align: center">{$value.id}</td>
+                            <td style="text-align: center">{$value.inputtime}</td>
+                            <td style="text-align: center">{$value.goods_type}</td>
+                            <td style="text-align: center">{$value.problem}</td>
+                            <td style="text-align: center">{$value.back_number}</td>
+                            <td style="text-align: center">{$value.status|getStatus}</td>
+                        </tr>
+                    <?php };?>
                 </tbody>
+                {/if}
+
+                {if empty($list)}
+                    <tbody class="h_active">
+                        <tr style="display: table-row;">
+                            <td colspan="5">未查询到记录</td>
+                        </tr>
+                    </tbody>
+                {/if}
             </table>
         </div>
         <div class="layout kuaid_lay" style="display: none;">
@@ -66,6 +88,11 @@
         $(this).siblings().removeClass("current");
     })
 </script>
+<style>
+    a:hover{
+        text-decoration: none;
+    }
+</style>
 {/block}
 
 
