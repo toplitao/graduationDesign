@@ -12,18 +12,19 @@
 
 {block name="main"}
 <div class="container">
-    
+    {volist name="list" id="vo"}
+    <div class="item">
+        <div class="product">
+            <a href="{$Request.domain}/web/product_area/description?gid={$vo.id}">
+                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
+            </a>
+            <p>{$vo.name}</p>
+        </div>
+    </div>
+    {/volist}
     <div class="item">
         <div class="product">
             <a href="{$Request.domain}/web/product_area/description">
-                <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
-            </a>
-            <p>iphoneSE</p>
-        </div>
-    </div>
-    <div class="item">
-        <div class="product">
-            <a href="javascript:void(0)">
                 <img src="http://file.lysh.tech/static/img/admin/a5.jpg" />
             </a>
             <p>iphoneSE</p>
@@ -73,8 +74,8 @@
 <script src="{$Request.domain}/js/common/common.js"></script>
 <style>
     header .logo img {
-        width: 35px;
-        height: 50px;
+        width:33px;
+        height:55px;
     }
     .container{
         font-size: 0rem;

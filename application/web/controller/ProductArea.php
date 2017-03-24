@@ -23,11 +23,17 @@ class ProductArea extends CommonBase{
     public function index() {
         $data['code'] = 6;
         $data['userInfo'] = $this->userinfo;
+        $data['list'] = db('goods')->paginate(10);
         return $this->view->fetch('index',$data);
     }
     public function description() {
+        $result=$this->request->param();
         $data['code'] = 6;
         $data['userInfo'] = $this->userinfo;
+        if(!empty($result)) {
+            $list = db('goods')->where(['id'=>$result['gid']])->paginate(10);
+            $data['list'] = $list;
+        }
         return $this->view->fetch('description',$data);
     }
 
