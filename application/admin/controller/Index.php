@@ -54,8 +54,9 @@ class Index extends CommonBase
         $data=$this->request->param();
         if(!empty($data['back_number'])) {
             db('apply_repair')->where('id',$data['id'])->update(['back_number' => $data['back_number'],'status'=>6]);
-            echo "<script>alert('操作成功');history.go(-1);</script>";
-           
+            echo "<script>alert('操作成功');</script>";
+            $list = db('apply_repair')->where(['status'=>6])->where(['user_id'=>$uid])->paginate(10);
+            return $this->view->fetch('repair_order',['list'=>$list]);
         }else{
             echo "<script>alert('操作失败');</script>";
         }
