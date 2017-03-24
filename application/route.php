@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 use think\Route;
 use think\View;
+use think\Session;
 // return [
 //     '__pattern__' => [
 //         'name' => '\w+',
@@ -28,5 +29,6 @@ Route::get('/login',function(View $view){
 });
 Route::get('/',function(View $view){
     $data['code'] = 1;
+    $data['userInfo'] = Session::get('userinfo');
     return $view->fetch('web@home/home',$data);
 });

@@ -13,32 +13,22 @@
 <!--<div class="container">-->
     <section class="page_bg" id="main">
     <article class="order_search">
-        <article class="wrap">
-            <form class="search emlay" method="post">
+        <article class="wrap clearfix">
+            <form class="search emlay" method="post" id="search-form">
                 <input type="hidden" name="orderCategory" id="orderCategory" value="1">
-                <input type="hidden" name="status" id="status" value="0">
-                <input type="hidden" name="currentPage" id="currentPage" value="1">
-                <input type="hidden" name="totalPage" id="totalPage" value="0">
-                <input type="hidden" name="totalRows" id="totalRows" value="0">
-                <input type="text" name="m" autocomplete="off" placeholder="请输入您的手机号查询您的订单" id="mobile" value="{$moblie}" class="text tips"><input type="submit" class="sub" value="查询">
+                <input type="text" name="m" autocomplete="off" placeholder="请输入您的手机号查询您的订单" id="mobile" value="{$moblie}" class="text tips">
+                <input type="button" class="sub" value="查询" onclick="ajaxSendData('search-form','/web/search_repair/list_apply_repair')">
             </form>
         </article>
     </article>
-    <article class="wrap">
+    <article class="wrap clearfix">
         <dl class="searchtype" id="searchtype">
             <dd class="current" data-status="0"><a href="javascript:void(0);">所有订单</a>|</dd>
-            <dd data-status="1">
-                <a href="javascript:void(0);">待邮寄 <small>（0）</small></a>|
-            </dd>
-            <dd data-status="2">
-                <a href="javascript:void(0);">待支付 <small>（0）</small></a>|
-            </dd>
-            <dd data-status="3">
-                <a href="javascript:void(0);">待收货 <small>（0）</small></a>|
-            </dd>
-            <dd data-status="4">
-                <a href="javascript:void(0);">待评价 <small>（0）</small></a>
-            </dd>
+            <?php foreach($arrayList as $key => $val){?>
+                <dd data-status="{$val.status}">
+                    <a href="javascript:void(0);">{$val.status|getStatus} <small>（{$val.count}）</small></a>|
+                </dd>
+            <?php }?>
         </dl>
         <div class="orderbox new_orderbox new_orderbox_bottom_line">
             <table width="100%" cellspacing="0" cellpadding="0" border="0" class="order_table">
@@ -70,7 +60,7 @@
                 {if empty($list)}
                     <tbody class="h_active">
                         <tr style="display: table-row;">
-                            <td colspan="5">未查询到记录</td>
+                            <td colspan="6">未查询到记录</td>
                         </tr>
                     </tbody>
                 {/if}
@@ -83,9 +73,26 @@
 </section>
 <!--</div>-->
 <script>
+    $(document).ready(function(){
+        
+    })
     $(".searchtype dd").on('click',function(){
         $(this).addClass("current");
         $(this).siblings().removeClass("current");
+        var status = $(this).data('status');
+//        $.ajax({
+//            url :'/user/changeProvince',
+//            type: 'POST',
+//            data: {'province_id':province_id},
+//            success:function(result){
+//                if(result.status == 300){
+//                    return dialog.error(result.msg);
+//                }else{
+//                    $("#reg-date").html(result)
+//                }
+//            }
+//        })
+        window.location.href = '/web/search_repair/show_apply_repair/status/'+status;
     })
 </script>
 <style>

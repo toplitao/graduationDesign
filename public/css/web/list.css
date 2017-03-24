@@ -368,7 +368,7 @@ transform//:rotate(180deg);
 .searchtype dd small{font-size:14px}
 .searchtype dd.current a{color:#f60;border-bottom:#f60 solid 2px}
 .searchtype dd a:hover{color:#f60!important;border-bottom:#f60 solid 2px}
-.new_orderbox{margin-top:0!important;padding:0;width:998px;border-top:0;border-bottom:0}
+.new_orderbox{margin-top:0!important;padding:0;width:998px;}
 .new_orderbox table{width:100%;float:left}
 .new_orderbox .h_active td{background:#fcfcfc}
 .new_orderbox th{padding:0 15px;height:44px;border-bottom:#e6e6e6 solid 1px;font-size:14px}

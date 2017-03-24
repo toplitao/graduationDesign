@@ -3,7 +3,8 @@ namespace app\Web\Controller;
 
 use app\base\CommonBase;
 use think\Session;
-
+use think\config;
+use think\Db;
 class SearchRepair extends CommonBase{
 
     private $userinfo;
@@ -38,7 +39,22 @@ class SearchRepair extends CommonBase{
         $data['code'] = 3;
         $data['moblie'] = Session::get('moblie');
         $data['userInfo'] = $this->userinfo;
-        $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
+        $data['status'] = 0;
+        $status = $this->request->param('status');
+        if($status){
+            $data['status'] = $this->request->param('status');
+            $data['list'] = Db('apply_repair')->where('tel_number',$data['moblie'])->where('status',$status)->select();
+        }else{
+            $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
+        }
+        $statusList = Config::get('status');
+        $arrayList = array();
+        foreach($statusList as $key => $val){
+            $rs = Db::query('select * from apply_repair where `status` = '.$key.' and `tel_number` = '.$data['moblie']);
+            $count = count($rs);
+            $arrayList[$key] = array('status'=>$key,'count'=>$count);
+        }
+        $data['arrayList'] = $arrayList;
         return $this->view->fetch('list_apply_repair',$data);
     }
     

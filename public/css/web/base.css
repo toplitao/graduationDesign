@@ -179,7 +179,8 @@ header ul{
 }
 header ul li{
     display: inline-block;
-    padding: 1rem 4rem;
+    padding: 1rem 0rem;
+    width: 16.666666%;
 }
 header ul li a{
     display: block;
