@@ -38,6 +38,7 @@
                                     <th>产品型号</th>
                                     <th>姓名</th>
                                     <th>联系方式</th>
+                                    <th>地址</th>
                                     <th>具体问题</th>
                                     <th>运单号</th>
                                     <th>返单号</th>
@@ -52,6 +53,7 @@
                                     <td>{$vo.goods_type}</td>
                                     <td>{$vo.customer_name}</td>
                                     <td>{$vo.tel_number}</td>
+                                    <td>{$vo.address}</td>
                                     <td>{$vo.problem}</td>
                                     <td>{$vo.order_number}</td>
                                     <td>{$vo.back_number}</td>
@@ -61,7 +63,7 @@
                                     </td>
                                     {elseif condition="$vo.status == 4"/}
                                     <td>
-                                        正在维修
+                                        维修完成请点击 
                                         <a href="{$Request.domain}/admin/index/finish_repair?aid={$vo.id}" class="btn btn-primary">
                                         维修完成
                                         </a>
@@ -69,7 +71,7 @@
                                     {elseif condition="$vo.status == 5"/}
                                     <td>
                                         维修完成
-                                        <a href="{$Request.domain}/admin/index/finish_repair?aid={$vo.id}" class="btn btn-primary">
+                                        <a href="javascript:send_goods({$vo.id})" class="btn btn-primary">
                                        发货
                                         </a>
                                     </td>
@@ -88,6 +90,28 @@
             </div>
         </div>
         
+    </div>
+
+    <div class="list2 clear" style="background: gainsboro; opacity: 0.9; z-index: 10; position: fixed; top: 30%; width: 45%; left: 30%;overflow: auto;border-radius: 0.5em;display: none;border: 1px gainsboro solid;padding: 20px;" id="send_goods" >
+        <form method="post" action="{$Request.domain}/admin/index/send_goods">
+            <input type="hidden" id="oid" name="id" value="">
+            <div style="font-size: 26px;">发货</div>
+            <div style="margin-top: 20px;">
+                <label style="width: 150px;">物流方式:</label>
+                <select name="express">
+                    <option>中通</option>
+                    <option>申通</option>
+                    <option>圆通</option>
+                    <option>韵达</option>
+                    
+                </select>
+            </div>
+            <div style="margin-top: 20px;"><label style="width: 150px;">运单号:</label><input type="text" name="back_number" required="required"></div>
+            <div style="float: right;margin-top: 50px; border-bottom: 20px;">
+                <button type="button" class="btn white" style="border: 1px gainsboro solid;" id="hide"> 取消 </button>
+                <button type="submit" class="btn white" style="border: 1px gainsboro solid;"> 完成 </button>
+            </div>
+        </form>
     </div>
 
     <!-- 全局js -->
@@ -109,6 +133,9 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function () {
+            $("#hide").click(function(){
+                $("#send_goods").hide();
+            });
             $('.dataTables-example').dataTable();
 
             /* Init DataTables */
@@ -133,6 +160,10 @@
 
 
         });
+        function send_goods(id) {
+            $('#oid').val(id);
+            $('#send_goods').show()
+        }
 
         function fnClickAddRow() {
             $('#editable').dataTable().fnAddData([
