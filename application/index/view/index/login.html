@@ -15,6 +15,7 @@
     <!--弹出框插件文件-->
     <script src="{$Request.domain}/layer-v3.0.1/layer/layer.js"></script>
     <script src="{$Request.domain}/js/admin/layer_dialog.js"></script>
+    <script src="{$Request.domain}/js/common/common.js"></script>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -44,7 +45,7 @@
                     </label>
                 </div>
                 <button type="button" class="btn btn-primary block full-width m-b" onclick="ajaxSendData('login-form','/index/index/login')">登 录</button>
-                <p class="text-muted text-center"> <a href="/index/index/forgetPassword"><small>忘记密码了？</small></a> | <a href="/index/index/register">注册一个新账号</a>
+                <p class="text-muted text-center"> <!--<a href="/index/index/forgetPassword"><small>忘记密码了？</small></a> |--> <a href="/index/index/register">注册一个新账号</a>
                 </p>
             </form>
         </div>

@@ -16,7 +16,7 @@
 
 {block name="content"}
 <div class="container">
-    <form class="form-horizontal register_form"  role="form" id="register-form">
+    <form class="form-horizontal register_form"  role="form" method="post" action="/index/index/register"  enctype="multipart/form-data" id="register-form">
         <div class="form-group">
              <label  for="forlevel"class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
@@ -80,10 +80,12 @@
                 <div class="col-md-9">
                     <input id="sfz" name="img" type="file" class="file file-loading"  data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false" data-show-caption="ture">
                     <!--<input type="hidden" id="img" name="img" />-->
+                    <!--<input id="sfz" name="img" type="file"/>-->
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-block" onclick="ajaxSendData('register-form','/index/index/register')"/>注册
+        <!--<button type="button" class="btn btn-primary btn-block" onclick="ajaxSendData('register-form','/index/index/register')"/>注册-->
+        <button type="submit" class="btn btn-primary btn-block" />注册
     </form>    
 </div>
 <script>
@@ -264,31 +266,16 @@
 	    allowedFileExtensions : ['jpg', 'png','jpeg'],  //允许上传的文件后缀名
 	    maxFileSize: 4096, //最大文件大小 4M
 	    language: 'zh', //中文提示信息
-//	    uploadAsync: false,//同步提交文件
+	    uploadAsync: true,//同步提交文件
 	    maxFileCount: 1, //最大文件数量
-        showUpload: false, //是否显示上传按钮
+        showUpload: true //是否显示上传按钮
 
 	});
 	/**
 	 * 上传身份证，从业资格证回调函数
 	 */
-//	$("#sfz").on("fileuploaded", function(event, data) {
-//        if(data.response.status == 1) {
-//            return dialog.alert(data.response.msg);
-//            var old_img = $("#img").val();
-//            var oid_length = old_img.length;
-//            var img = data.response.data;
-//            if(oid_length <=0){
-//            	var new_img = img;
-//            }else{
-//                var new_img = old_img +','+img;
-//            }
-//            $("#img").val(new_img);
-//        }
-//        if(data.response.status == 2)
-//        {
-//            dialog.alert(data.response.msg);
-//        }
-//    });
+	$("#sfz").on("fileuploaded", function(event, data) {
+	    alert(1);
+    });
 </script>
 {/block}

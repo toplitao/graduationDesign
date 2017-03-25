@@ -85,7 +85,12 @@ class Index extends CommonBase{
 							);
                 $result=DB('user')->insertGetId($data);
                 echo $result;
-                $img = $this->http_curl('http://php.lysh.tech/api/common/file-upload?id='.$result.'&dir=repairer/sfz&table=User&filed=img');
+
+                $fileName =$_FILES['img']['tmp_name']; //获取文件临时存放地址
+                $array = [];
+
+                $img = $this->http_curl('http://localhost:9000/api/common/file-upload?id='.$result.'&dir=repairer/sfz&table=User&filed=img','post','json',$array);
+
                 print_r($img);
                 exit;
 			}
@@ -107,7 +112,8 @@ class Index extends CommonBase{
 			}
 			return dr_show_return(300, '注册失败！');
     	}
-        return dr_show_return(300, '未获取有效信息！');
+        $data['list'] = Db('station')->select();
+        return $this->view->fetch('index@index/register',$data);
     } 
     /*
      * 忘记密码找回操作
@@ -151,20 +157,25 @@ class Index extends CommonBase{
 	/**
 	 * ajax异步上传图片
 	 */
-//	public function ajaxUploadImg(){
-//			define("UPLOAD_ROOT", dirname(dirname(dirname(dirname(__FILE__)))));
-//			//	获取表单上传文件
-//			$files	=	request()->file('img');
-//			foreach($files	as	$file){
-//				$info	=	$file->move(UPLOAD_ROOT.'/public/media/img/');
-//				if($info){
-//					//	成功上传后	获取上传信息
-//					return dr_show_return(1,'上传成功','',$info->getSaveName());
-//				}else{
-//					//	上传失败获取错误信息
-//					return dr_show_return(2,'上传失败','',$file->getError());
-//				}
-//			}
-//	}
+	public function ajaxUploadImg(){
+            define("UPLOAD_ROOT ", $_SERVER['DOCUMENT_ROOT'].'/media/img/');
+            print_r(UPLOAD_ROOT);
+            exit;
+			//	获取表单上传文件
+            $file = request()->file('img');
+            $info = $file->move(UPLOAD_ROOT);
+            if($info){
+                // 成功上传后 获取上传信息
+                // 输出 jpg
+                echo $info->getExtension();
+                // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+                echo $info->getSaveName();
+                // 输出 42a79759f284b767dfcb2a0197904287.jpg
+                echo $info->getFilename();
+            }else{
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+	}
 
 }

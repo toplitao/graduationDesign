@@ -39,9 +39,7 @@ class CommonBase extends Controller{
         }
         //3.数据采集
         $output = curl_exec($ch);
-        //4.关闭
-//        curl_close($ch);
-        //5.数据处理
+        //4.数据处理
         if($res == 'json'){
             if(curl_errno($ch)){
                 return curl_error($ch);//输出错误信息
@@ -49,6 +47,9 @@ class CommonBase extends Controller{
                 return json_decode($output,true);
             }
         }
+        //5.关闭
+        curl_close($ch);
+
     }
 
 }

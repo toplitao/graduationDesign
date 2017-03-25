@@ -11,28 +11,30 @@
 		<script src="/layer-v3.0.1/layer/layer.js"></script>
 		<script src="/js/admin/layer_dialog.js"></script>
 		<!--公共js文件-->
-		<script src="{$Request.domain}/js/common/common.js"></script>
+		<script src="/js/common/common.js"></script>
         {block name="js_css"}{/block}
     	<title>{block name="title"}{/block}</title>
     </head>
     <body>
 		<nav>
 			<div class="content clearfix">
-				<div class="tel">
+				<div class="tel clearfix">
 					联系热线：4008-112-112
 				</div>
-				<div>
+				<div class="clearfix">
+					<ul>
 					{if empty($userInfo)}
-						<ul>
 							<li><a href="{$Request.domain}/login">登录</a></li>
 							<li><a href="{$Request.domain}/register">快速注册</a></li>
-						</ul>
 					{else /}
 						<div class="loginout">
 							欢迎您：{if $userInfo.userType == 1}{$userInfo.name}{else /}{$userInfo.username}{/if}
 							<a href="/index/index/loginout">退出</a>
 						</div>
 					{/if}
+						<li><a href="#">我们的实力</a> </li>
+						<li><a href="/web/search_repair/search_apply_repair">我的订单</a> </li>
+					</ul>
 				</div>
 			</div>			
 		</nav>	
