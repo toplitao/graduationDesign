@@ -37,15 +37,31 @@ class SearchRepair extends CommonBase{
 
     public function show_apply_repair(){
         $data['code'] = 3;
-        $data['moblie'] = Session::get('moblie');
+        if(!empty(Session::get('moblie'))) {
+             $data['moblie'] = Session::get('moblie');
+        }else{
+             $data['moblie'] = 0;
+        }
         $data['userInfo'] = $this->userinfo;
         $data['status'] = 0;
         $status = $this->request->param('status');
-        if($status){
-            $data['status'] = $this->request->param('status');
-            $data['list'] = Db('apply_repair')->where('tel_number',$data['moblie'])->where('status',$status)->select();
+        if(!empty($data['moblie'])) {
+            if($status){
+                $data['status'] = $this->request->param('status');
+                $data['list'] = Db('apply_repair')->where('tel_number',$data['moblie'])->where('status',$status)->select();
+            }else{
+                
+                $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
+            }
         }else{
-            $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
+            if($status){
+                $data['status'] = $this->request->param('status');
+                $data['list'] = Db('apply_repair')->where('uid',$this->userinfo['id'])->where('status',$status)->select();
+            }else{
+               
+                $data['list'] = Db('apply_repair')->where(['uid' => $this->userinfo['id']])->select();
+                
+            }
         }
         $statusList = Config::get('status');
         $arrayList = array();
@@ -57,7 +73,14 @@ class SearchRepair extends CommonBase{
         $data['arrayList'] = $arrayList;
         return $this->view->fetch('list_apply_repair',$data);
     }
-    
+    public function confirm_apply_repair(){
+        $aid = $this->request->param('aid');
+        $time = date("Y-m-d",time());
+        db('apply_repair')->where('id',$aid)->update(['status' => 7,'updated_at'=>$time]);
+        $insert = ['oid' => $aid,'status'=> 7, 'charger' => $this->userinfo['name'],'created_at' => $time,'updated_at'=>$time,'uid' => $this->userinfo['id']];
+        db('documentary')->insert($insert);//插入跟单信息
+        $this->show_apply_repair();
+    }
 
     
 
