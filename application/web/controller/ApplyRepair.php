@@ -26,15 +26,17 @@ class ApplyRepair extends CommonBase
         //	获取表单上传文件
         $file = request()->file('picture');
         define("UPLOAD_ROOT", '/media/img/');
-        if (!file_exists (UPLOAD_ROOT)) {
-            mkdir ( UPLOAD_ROOT, 0777, true );
-        }
+//        if (!file_exists (UPLOAD_ROOT)) {
+//            mkdir ( UPLOAD_ROOT, 0777, true );
+//        }
         $info = $file->move(UPLOAD_ROOT);
         if($info){
             $data=$this->request->param();
             $data['uid']=$this->userinfo['id'];
+
             $domain_name = Config::get('DOMAIN_NAME');
             $data['picture'] = $domain_name .'/media/img/'.$info->getSaveName();
+
             $data['created_at'] = date('Y-m-d',time());
             if($id=db('apply_repair')->insertGetId($data)){
 //                $list = db('apply_repair')->where(['uid'=>$this->userinfo['id']])->select();
