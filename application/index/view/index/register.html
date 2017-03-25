@@ -78,13 +78,11 @@
             <div class="form-group">
                 <label for="forimg" class="control-label col-md-3">身份证：</label>
                 <div class="col-md-9">
-                    <input id="sfz" name="img" type="file" class="file file-loading"  data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false" data-show-caption="ture">
-                    <!--<input type="hidden" id="img" name="img" />-->
-                    <!--<input id="sfz" name="img" type="file"/>-->
+                    <input id="sfz" name="image" type="file" class="file file-loading"  data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false" data-show-caption="ture">
+                    <input type="hidden" id="img" name="img" />
                 </div>
             </div>
         </div>
-        <!--<button type="button" class="btn btn-primary btn-block" onclick="ajaxSendData('register-form','/index/index/register')"/>注册-->
         <button type="submit" class="btn btn-primary btn-block" />注册
     </form>    
 </div>
@@ -239,8 +237,6 @@
 			            return dialog.error(result.msg);
 			        }
             	}, 'json');
-	    	}else{
-	    		return dialog.error("提交失败！");
 	    	}
         });
 	});
@@ -274,8 +270,14 @@
 	/**
 	 * 上传身份证，从业资格证回调函数
 	 */
-	$("#sfz").on("fileuploaded", function(event, data) {
-	    alert(1);
+	$("#sfz").on("fileuploaded", function(event,data) {
+	    if(data.response.status == 200){
+	        $("#img").val(data.response.data.imgpath);
+	        return dialog.alert(data.response.msg);
+        }
+        if(data.response.status == 300){
+            return dialog.error(data.response.msg);
+        }
     });
 </script>
 {/block}

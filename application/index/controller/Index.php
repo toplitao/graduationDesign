@@ -81,18 +81,10 @@ class Index extends CommonBase{
 				                'iphone'   => $this->request->param('iphone'),
 				                'status' => 1,
                                 'sid' => $this->request->param('sid'),
-                                'created_at' => date('Y-m-d',time())
+                                'created_at' => date('Y-m-d',time()),
+                                'img' =>  $this->request->param('img'),
 							);
                 $result=DB('user')->insertGetId($data);
-                echo $result;
-
-                $fileName =$_FILES['img']['tmp_name']; //获取文件临时存放地址
-                $array = [];
-
-                $img = $this->http_curl('http://localhost:9000/api/common/file-upload?id='.$result.'&dir=repairer/sfz&table=User&filed=img','post','json',$array);
-
-                print_r($img);
-                exit;
 			}
 			//普通用户
 			if($this->request->param('level') == 1){
@@ -158,23 +150,15 @@ class Index extends CommonBase{
 	 * ajax异步上传图片
 	 */
 	public function ajaxUploadImg(){
-            define("UPLOAD_ROOT ", $_SERVER['DOCUMENT_ROOT'].'/media/img/');
-            print_r(UPLOAD_ROOT);
-            exit;
+            define("UPLOAD_ROOT", $_SERVER['DOCUMENT_ROOT'].'/media/img/');
 			//	获取表单上传文件
-            $file = request()->file('img');
+            $file = request()->file('image');
             $info = $file->move(UPLOAD_ROOT);
             if($info){
-                // 成功上传后 获取上传信息
-                // 输出 jpg
-                echo $info->getExtension();
-                // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-                echo $info->getSaveName();
-                // 输出 42a79759f284b767dfcb2a0197904287.jpg
-                echo $info->getFilename();
+                $imgpath =  $info->getSaveName();
+                return dr_show_return('200','上传成功',array('imgpath'=>$imgpath));
             }else{
-                // 上传失败获取错误信息
-                echo $file->getError();
+                return dr_show_return('300','上传失败，'.$file->getError());
             }
 	}
 
