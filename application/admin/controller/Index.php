@@ -54,7 +54,9 @@ class Index extends CommonBase
         $data=$this->request->param();
         $time = date("Y-m-d",time());
         if(!empty($data['back_number'])) {
-            db('apply_repair')->where('id',$data['id'])->update(['back_number' => $data['back_number'],'status'=>6,'updated_at'=>$time]);
+            db('apply_repair')->where('id',$data['id'])->update(['back_number' => $data['back_number'],'status'=>6,'updated_at'=>$time,'express_code'=> $data['express']]);
+            $insert = ['oid' => $data['id'],'status'=> 6,'charger' => $this->user['username'],'created_at' => $time,'updated_at'=>$time,'uid' => $this->user['id']];
+             db('documentary')->insert($insert);//插入跟单信息
             echo "<script>alert('操作成功');</script>";
             $list = db('apply_repair')->where(['status'=>6])->where(['user_id'=>$uid])->paginate(10);
             return $this->view->fetch('repair_order',['list'=>$list]);
@@ -67,6 +69,8 @@ class Index extends CommonBase
         $data=$this->request->param();
         $time = date("Y-m-d",time());
         db('apply_repair')->where('id',$data['aid'])->update(['status' => 5,'updated_at'=>$time]);
+        $insert = ['oid' => $data['aid'],'status'=> 6, 'charger' => $this->user['username'],'created_at' => $time,'updated_at'=>$time,'uid' => $this->user['id']];
+        db('documentary')->insert($insert);//插入跟单信息
         $uid = $this->user['id'];
         $list = db('apply_repair')->where(['status'=>5])->where(['user_id'=>$uid])->paginate(10);
         return $this->view->fetch('repair_order',['list'=>$list]);
@@ -94,7 +98,12 @@ class Index extends CommonBase
              $fittings_data = explode(',',$fittings_arr[$i]);
              $result = db('fittings')->where('id',$fittings_data[0])->find();//搜索原数据
              $number = $result['number'] - $fittings_data[1];
-             db('fittings')->where('id',$fittings_data[0])->update(['number' => $number,'updated_at'=>$time]);//修改配件库存数量
+             //修改配件库存数量
+             db('fittings')->where('id',$fittings_data[0])->update(['number' => $number,'updated_at'=>$time]);
+             //插入跟单信息
+             $inserts = ['oid' => $data['aid'],'status'=> 6, 'charger' => $this->user['username'],'created_at' => $time,'updated_at'=>$time,'uid' => $this->user['id']];
+             db('documentary')->insert($inserts);
+             //配件出库记录
              $insert = ['oid' => $data['aid'], 'fid' => $fittings_data[0],'created_at' => $time,'updated_at'=>$time,'number' => $fittings_data[1]];
              db('fitting_log')->insert($insert);
          }

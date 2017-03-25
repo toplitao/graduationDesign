@@ -59,7 +59,7 @@
                                     <td>{$vo.back_number}</td>
                                     {if condition="$vo.status == 3 "} 
                                     <td>
-                                        <a class="btn btn-primary" href="{$Request.domain}/admin/index/fittings_list?aid={$vo.id}">接受维修单</a>
+                                        <a class="btn btn-primary" href="{$Request.domain}/admin/index/fittings_list?aid={$vo.id}&status=4">接受维修单</a>
                                     </td>
                                     {elseif condition="$vo.status == 4"/}
                                     <td>
@@ -103,11 +103,7 @@
             <div style="font-size: 26px;">发货</div>
             <div style="margin-top: 20px;">
                 <label style="width: 150px;">物流方式:</label>
-                <select name="express">
-                    <option>中通</option>
-                    <option>申通</option>
-                    <option>圆通</option>
-                    <option>韵达</option>
+                <select name="express" id="express">
                     
                 </select>
             </div>
@@ -167,7 +163,20 @@
         });
         function send_goods(id) {
             $('#oid').val(id);
-            $('#send_goods').show()
+            $('#send_goods').show();
+            $.ajax({
+                type: "GET",
+                url:'http://php.lysh.tech/api/common/express-code-search',
+                dataType:'json',
+                success: function(data) {
+                   var result = eval(data);
+                   var str = '';
+                   for(var i=0;i<101;i++){
+                       str+='<option value="'+result[i]['code']+'">'+result[i]['name']+'</option>';
+                   }
+                   $('#express').html(str);
+                }
+            });
         }
 
         function fnClickAddRow() {
