@@ -152,7 +152,7 @@ class Index extends CommonBase{
 	public function ajaxUploadImg(){
             define("UPLOAD_ROOT", $_SERVER['DOCUMENT_ROOT'].'/media/img/');
             if (!file_exists() (UPLOAD_ROOT)) {
-                mkdir ( "UPLOAD_ROOT", 0777, true );
+                mkdir ( UPLOAD_ROOT, 0777, true );
             }
 			//	获取表单上传文件
             $file = request()->file('image');
