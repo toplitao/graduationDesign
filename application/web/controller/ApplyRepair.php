@@ -25,7 +25,7 @@ class ApplyRepair extends CommonBase
     public function insert_apply_repair() {
         //	获取表单上传文件
         $file = request()->file('picture');
-        define("UPLOAD_ROOT", 'http://location/media/img/');
+        define("UPLOAD_ROOT", '/media/img/');
         if (!file_exists (UPLOAD_ROOT)) {
             mkdir ( UPLOAD_ROOT, 0777, true );
         }
