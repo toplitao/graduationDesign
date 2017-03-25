@@ -59,15 +59,18 @@ class Index extends CommonBase{
     	if($this->request->param()){
     	    //普通用户
     	    if($this->request->param('level') == 1){
-                $res =DB('user_info')->where('name',$this->request->param('username'))->find();
+                $res = DB('user_info')->where('name',$this->request->param('username'))->find();
+                if($res){
+                    return dr_show_return(300, '该用户名已被注册！');
+                }
             }
             //维修人员
             if($this->request->param('level') == 2){
-                $res =DB('user')->where('username',$this->request->param('username'))->find();
+                $res = DB('user')->where('username',$this->request->param('username'))->find();
+                if($res){
+                    return dr_show_return(300, '该用户名已被注册！');
+                }
             }
-			if($res){
-				return dr_show_return(300, '该用户名已被注册！');
-			}
 			if(md5($this->request->param('password')) != md5($this->request->param('repassword'))){
 				return dr_show_return(300, '两次输入密码不一致！');
 			}
@@ -78,10 +81,10 @@ class Index extends CommonBase{
 				                'password' => md5($this->request->param('password')),
 				                'level'    => 1,
 				                'repair_address' =>$this->request->param('address'),
-				                'iphone'   => $this->request->param('iphone'),
+				                'iphone'   => $this->request->param('phone'),
 				                'status' => 1,
                                 'sid' => $this->request->param('sid'),
-                                'created_at' => date('Y-m-d',time()),
+                                'created_at' => date('Y-m-d H:i:s',time()),
                                 'img' =>  $this->request->param('img'),
 							);
                 $result=DB('user')->insertGetId($data);
@@ -92,9 +95,9 @@ class Index extends CommonBase{
 								  'name' => $this->request->param('username'),
 		  		                  'password' => md5($this->request->param('password')),
 					              'address' =>$this->request->param('address'),
-			         	          'phone'   => $this->request->param('iphone'),
+			         	          'phone'   => $this->request->param('phone'),
                                   'email'   => $this->request->param('email'),
-                                  'created_at' => date('Y-m-d',time())
+                                  'created_at' => date('Y-m-d H:i:s',time())
 							 );
                 $result=DB('user_info')->insertGetId($data);
 			}

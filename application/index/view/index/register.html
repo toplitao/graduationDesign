@@ -16,7 +16,7 @@
 
 {block name="content"}
 <div class="container">
-    <form class="form-horizontal register_form"  role="form" method="post"  enctype="multipart/form-data" >
+    <form class="form-horizontal register_form"  role="form" method="post"  autocomplete="off" >
         <div class="form-group">
              <label  for="forlevel"class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
@@ -31,7 +31,7 @@
         <div class="form-group">
             <label for="forusername" class="control-label col-md-3">用户名：</label>
             <div class="col-md-9">
-                 <input type="text" class="form-control" id="username" name="username" placeholder="请输入6-12位数字或字母或下划线">
+                 <input type="text" class="form-control" id="username" name="username" placeholder="请输入6-12位数字或字母或下划线" autofocus>
             </div>    
         </div>
         <div class="form-group">
@@ -101,8 +101,8 @@
 	        fields: {
 	            username: {
 	                message: '用户名不能为空',
-	                threshold: 6,
 	                validators: {
+                        threshold: 6,
 	                    notEmpty: {
 	                        message: '用户名不能为空'
 	                    },
@@ -142,15 +142,15 @@
 	                    notEmpty: {
 	                        message: '确认密码不能为空'
 	                    },
-	                    stringLength: {
-	                        min: 6,
-	                        max: 12,
-	                        message: '密码必须为6-12位数字或字母或下划线'
-	                    },
-	                    regexp: {
-	                        regexp: /^[a-zA-Z0-9_]+$/,
-	                        message: '密码必须为6-12位数字或字母或下划线'
-	                    },
+//	                    stringLength: {
+//	                        min: 6,
+//	                        max: 12,
+//	                        message: '密码必须为6-12位数字或字母或下划线'
+//	                    },
+//	                    regexp: {
+//	                        regexp: /^[a-zA-Z0-9_]+$/,
+//	                        message: '密码必须为6-12位数字或字母或下划线'
+//	                    },
 	                    identical: {
 	                        field: 'password',
 	                        message: '两次密码不一致'
@@ -220,6 +220,9 @@
 	            }
 	        }
 	    }).on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+
 	    	if(e.type == 'success'){
 	    		var url = "/index/index/register";
 	    		var data = $(".register_form").serializeArray();
