@@ -22,27 +22,28 @@ class ApplyRepair extends CommonBase
     }
 
     public function insert_apply_repair() {
+        //	获取表单上传文件
         $file = request()->file('picture');
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public/media/img');
-        $date = date('Ymd',time());
+        define("UPLOAD_ROOT", $_SERVER['DOCUMENT_ROOT'].'/media/img/');
+        if (!file_exists (UPLOAD_ROOT)) {
+            mkdir ( UPLOAD_ROOT, 0777, true );
+        }
+        $info = $file->move(UPLOAD_ROOT);
         if($info){
-            // 成功上传后 获取上传信息
-            // 输出 jpg
-        }else{
+            $data=$this->request->param();
+            $data['uid']=$this->userinfo['id'];
+            $data['picture'] = $info->getSaveName();
+            $data['inputtime'] = date('Y-m-d',time());
+            if($id=db('apply_repair')->insertGetId($data)){
+//                $list = db('apply_repair')->where(['uid'=>$this->userinfo['id']])->select();
+//                return $this->view->fetch('web@search_repair/list_apply_repair',['list'=>$list,'code'=>2]);
+//                  header('location:'.$_SERVER['HTTP_ORIGIN'].'/web/search_repair/search_apply_repair');
+                  echo "<script>window.location.href = '/web/search_repair/search_apply_repair'</script>";
+            }
+        }else {
             // 上传失败获取错误信息
             echo $file->getError();
         }
-        $data=$this->request->param();
-        $data['uid']=$this->userinfo['id'];
-        $data['picture'] = $date.'/'.$info->getFilename();
-        $data['inputtime'] = date('Y-m-d',time());
-
-       if($id=db('apply_repair')->insertGetId($data)){
-            $list = db('apply_repair')->where(['uid'=>$this->user['id']])->select();
-            return $this->view->fetch('web@search_repair/list_apply_repair',['list'=>$list,'code'=>2]);
-
-       }
     }
     
     public function delete_apply_repair()

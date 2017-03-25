@@ -12,25 +12,30 @@
 
 {block name="main"}
 <div class="container">
-    {volist name="list" id="vo"}
-    <div class="description">
-        <dl class="dl-horizontal">
-            <dt>产品如何保养</dt>
-            <dd>{$vo.maintain}
-            </dd>
-        </dl>
-        <dl class="dl-horizontal">
-            <dt>产品帮助</dt>
-            <dd>{$vo.help}</dd>
-        </dl>
-        <dl class="dl-horizontal">
-            <dt></dt>
-            <dd><a href="">下载相关文档</a></dd>
-        </dl>
-    </div>
-    {/volist}
+    <?php foreach($list as $key =>$vo){?>
+        <div class="description">
+            <dl class="dl-horizontal">
+                <dt>产品如何保养</dt>
+                <dd>{$vo.maintain}
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>产品帮助</dt>
+                <dd>{$vo.help}</dd>
+            </dl>
+            {if !empty($vo.doc)}
+                <dl class="dl-horizontal">
+                    <dt>下载专区</dt>
+                    <dd>
+                        <?php foreach($vo['data'] as $kk =>$vv){?>
+                            <a href="{$vv}" style="cursor:pointer;">下载相关文档</a> <br/>
+                        <?php }?>
+                    </dd>
+                </dl>
+            {/if}
+        </div>
+    <?php }?>
 </div>
-<script src="{$Request.domain}/js/common/common.js"></script>
 <style>
     .container{
         padding: 20px;

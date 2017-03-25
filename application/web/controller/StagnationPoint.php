@@ -33,6 +33,7 @@ class StagnationPoint extends CommonBase{
             $list = db('station')->where(['id'=>$result['sid']])->paginate(10);
             $data['list'] = $list;
         }
+        $data['user_list'] = db('user')->where(array('sid'=>$result['sid']))->select();
         return $this->view->fetch('description',$data);
 
     }

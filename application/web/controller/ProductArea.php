@@ -23,7 +23,10 @@ class ProductArea extends CommonBase{
     public function index() {
         $data['code'] = 6;
         $data['userInfo'] = $this->userinfo;
-        $data['list'] = db('goods')->paginate(10);
+        $data['list'] = db('goods')->select();
+        foreach($data['list'] as $key => $val){
+            $data['list'][$key]['data'] = json_decode($data['list'][$key]['picture'],true);
+        }
         return $this->view->fetch('index',$data);
     }
     public function description() {
@@ -31,8 +34,10 @@ class ProductArea extends CommonBase{
         $data['code'] = 6;
         $data['userInfo'] = $this->userinfo;
         if(!empty($result)) {
-            $list = db('goods')->where(['id'=>$result['gid']])->paginate(10);
-            $data['list'] = $list;
+            $data['list'] = db('goods')->where(['id'=>$result['gid']])->select();
+            foreach($data['list'] as $key => $val){
+                $data['list'][$key]['data'] = json_decode($data['list'][$key]['doc'],true);
+            }
         }
         return $this->view->fetch('description',$data);
     }
