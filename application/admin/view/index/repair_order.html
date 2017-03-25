@@ -33,7 +33,7 @@
                         <table class="table table-striped table-bordered table-hover dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>图片</th>
+                                    <!--<th>图片</th>-->
                                     <th>订单号</th>
                                     <th>产品型号</th>
                                     <th>姓名</th>
@@ -48,7 +48,7 @@
                             <tbody>
                                 {volist name="list" id="vo"}
                                 <tr>
-                                    <td><img src="{$Request.domain}/media/img/{$vo.picture}" width="80" height="80"></td>
+                                    <!--<td><img src="{$Request.domain}/media/img/{$vo.picture}" width="80" height="80"></td>-->
                                     <td>{$vo.id}</td>
                                     <td>{$vo.goods_type}</td>
                                     <td>{$vo.customer_name}</td>
