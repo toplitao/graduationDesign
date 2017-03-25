@@ -101,7 +101,7 @@ a *{cursor:pointer}
 #footer .foot-nav .first_menu li.right{padding-right:0;font-size:18px;color:#333;float:right}
 #footer .foot-nav .first_menu li.right .child_menu{padding-top:0;letter-spacing:0.5px}
 #footer .foot-nav .first_menu li.right .child_menu a{margin-top:12px;width:120px;height:28px;line-height:28px;text-align:center;font-size:12px;color:#f60;border:#f60 solid 1px;display:block;-webkit-transition: background .5s;-moz-transition: background .5s;transition: background .5s}
-#footer .foot-nav .first_menu li.right .child_menu a:hover{color:#fff!important;background:#f60}
+/*#footer .foot-nav .first_menu li.right .child_menu a:hover{color:#fff!important;background:#f60}*/
 #footer .footer-Copyright{margin-top:68px;width:100%;text-align:center;font-size:12px;color:#999;float:left;font-family:"宋体"}
 #footer .footer-Copyright font{padding:5px 10px 0;font-family:"microsoft yahei"}
 #footer .footer-Copyright a{color:#999}
@@ -205,7 +205,7 @@ a *{cursor:pointer}
 .right_lay li.weChat{background-position:0 -108px}
 .right_lay li.toTop{background-position:0 -162px}
 .right_lay li:hover{font-size:14px;color:#fff;line-height:20px;background:#333;background-color: rgb(51,51,51)}
-.right_lay a li:hover{padding:36px 0 0;width:54px;height:18px;text-align:center;color:#fff;font-size:12px;background:#f60 url(../Nimages/zx_icon.png) no-repeat center 7px;line-height:14px}
+/*.right_lay a li:hover{padding:36px 0 0;width:54px;height:18px;text-align:center;color:#fff;font-size:12px;background:#f60 url(../Nimages/zx_icon.png) no-repeat center 7px;line-height:14px}*/
 
 .right_lay .lay_rwm{position:absolute;right:54px;top:0;width:169px;height:214px;text-align:center;border:#e6e6e6 solid 1px;border-right:0;background:#fff;float:left;display:none}
 .right_lay .lay_rwm img{margin:0 auto;margin-top:20px;width:118px;height:118px;}

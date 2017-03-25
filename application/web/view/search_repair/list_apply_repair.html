@@ -4,6 +4,9 @@
  <link rel="stylesheet" href="{$Request.domain}/css/web/reset.css">
  <link rel="stylesheet" href="{$Request.domain}/css/web/list.css">
  <link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
+ <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+ <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+ <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
 {/block}
 {block name="title"}
 查询
@@ -131,8 +134,16 @@
     });
 </script>
 <style>
-    a:hover{
+    header .logo img {
+        width: 38px;
+        height: 55px;
+    }
+    header ul li a.active {
+        color: #1766c3;
+    }
+    header ul li a:hover {
         text-decoration: none;
+        color: #1766c3;
     }
 </style>
 {/block}

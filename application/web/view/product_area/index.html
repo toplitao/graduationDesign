@@ -1,9 +1,11 @@
 {extend name="base" /}
 
 {block name="js_css"}
-<link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{$Request.domain}/css/web/reset.css">
+    <link rel="stylesheet" href="{$Request.domain}/css/web/base.css">
+    <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
 {/block}
 
 {block name="title"}
@@ -11,29 +13,32 @@
 {/block}
 
 {block name="main"}
-<div class="container">
-    <?php foreach($list as $key =>$vo){?>
-        <div class="item">
-            <div class="product">
-                <a href="{$Request.domain}/web/product_area/description?gid={$vo.id}">
-                    <?php foreach($vo['data'] as $kk => $vv){?>
-                        {if $kk == 0}
-                            <img src="{$vv}" style="cursor:pointer;" width="200" height="200"/>
-                        {/if}
-                    <?php }?>
-                </a>
-                <p>{$vo.name}</p>
+    <div class="container">
+        <?php foreach($list as $key =>$vo){?>
+            <div class="item">
+                <div class="product">
+                    <a href="{$Request.domain}/web/product_area/description?gid={$vo.id}">
+                        <?php foreach($vo['data'] as $kk => $vv){?>
+                            {if $kk == 0}
+                                <img src="{$vv}" style="cursor:pointer;" width="200" height="200"/>
+                            {/if}
+                        <?php }?>
+                    </a>
+                    <p>{$vo.name}</p>
+                </div>
             </div>
-        </div>
-    <?php }?>
-</div>
+        <?php }?>
+    </div>
 <style>
     header .logo img {
-        width:33px;
-        height:55px;
+        width: 38px;
+        height: 55px;
     }
     .container{
         font-size: 0rem;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
     }
     .container .item{
         width: 20%;
@@ -50,30 +55,5 @@
         font-size: 1rem;
         padding: 1rem 0rem;
     }
-     /*.container{*/
-         /*margin-top: 2rem;*/
-         /*margin-bottom: 2rem;*/
-         /*font-size: 0rem;*/
-     /*}*/
-     /*.container div{*/
-         /*display: inline-block;*/
-         /*width: 18%;*/
-         /*height: 20rem;*/
-         /*font-size: 1rem;*/
-         /*transition: 1s;*/
-         /*margin-left: 2%;*/
-     /*}*/
-     /*.container div:hover{*/
-         /*border: 4px solid #bc0000;*/
-     /*}*/
-    /*.container div a{*/
-        /*display: block;*/
-        /*cursor: pointer;*/
-    /*}*/
-    /*.container div p{*/
-        /*padding: 1rem 0rem;*/
-        /*font-size: 1rem;*/
-        /*text-align: center;*/
-    /*}*/
 </style>
 {/block}

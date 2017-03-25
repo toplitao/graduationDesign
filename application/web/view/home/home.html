@@ -6,6 +6,9 @@
  <!--轮播广告样式文件-->
  <link rel="stylesheet" href="{$Request.domain}/OwlCarousel2-2.2.1/dist/assets/owl.carousel.css" />
  <link rel="stylesheet" href="{$Request.domain}/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.css" />
+ <link rel="stylesheet" href="{$Request.domain}/bootstrap-3.3.0/dist/css/bootstrap.min.css">
+ <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+ <script src="{$Request.domain}/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
 {/block}
 {block name="title"}首页{/block}
 {block name="main"}
@@ -87,4 +90,10 @@
 			});
         });
 	</script>
+	<style>
+		header .logo img {
+			width: 38px;
+			height: 55px;
+		}
+	</style>
 {/block}
