@@ -54,7 +54,12 @@
                             <td style="text-align: center">{$value.back_number}</td>
                             <td style="text-align: center">{$value.status|getStatus}</td>
                             {if $value.status == 7}
-                            <td style="text-align: center"><button style="cursor: pointer" onclick="feedback({$value.id})">去评价</button> </td>
+                            <td style="text-align: center"><button style="cursor: pointer;color:white;width:80px;height:30px;" onclick="feedback({$value.id})">去评价</button> </td>
+                            {elseif $value.status == 6}
+                            <td style="text-align: center">
+                                <a href="{$Request.domain}/web/search_repair/confirm_apply_repair?aid={$value.id}"><button style="cursor: pointer;color:white;width:80px;height:30px;background:#00a6ff">确认收货</button></a> 
+                                <button style="cursor: pointer;color:white;width:80px;height:30px;" onclick="check_express({$value.id},{$value.back_number},'{$value.express_code}')">查看物流</button> 
+                            </td>
                             {else /}
                             <td style="text-align: center"></td>
                             {/if}
@@ -87,6 +92,29 @@
     })
     function feedback(id){
         window.location.href = '/web/feed_back/create_apply_feedback/id/'+id;
+    }
+    function check_express(id,back_number,express_code) {
+        $.ajax({
+            type: "GET",
+            url:'http://php.lysh.tech/api/common/express-search?ShipperCode='+express_code+'&LogisticCode='+back_number,
+            dataType:'json',
+            success: function(data) {
+                if(true == data['Success']) {
+                    var str = '';
+                    str='<div style="font-size:16px;">订单号：'+id+'&nbsp;&nbsp;物流详情</div><br><br>';
+                    for(var i=0;i<data['Traces'].length;i++) {
+                        str+="<div>"+data['Traces'][i]['AcceptTime']+"&nbsp;&nbsp;&nbsp;"+data['Traces'][i]['AcceptStation']+"</div><br>";
+                    }
+                    $('#main').css('margin-top','40px');
+                    $('#main').css('margin-left','30%');
+                    $('#main').html(str);
+                }else{
+                    alert(data['Reason']);
+                    return false;
+                }
+               
+            }
+        });
     }
 </script>
 <style>
