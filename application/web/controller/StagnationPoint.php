@@ -30,8 +30,10 @@ class StagnationPoint extends CommonBase{
         $data['code'] = 5;
         $data['userInfo'] = $this->userinfo;
         if(!empty($result)) {
-            $list = db('station')->where(['id'=>$result['sid']])->paginate(10);
-            $data['list'] = $list;
+            $data['list'] = db('station')->where(['id'=>$result['sid']])->select();
+            foreach($data['list'] as $key => $val){
+                $data['list'][$key]['data'] = json_decode($data['list'][$key]['work_img'],true);
+            }
         }
         $data['user_list'] = db('user')->where(array('sid'=>$result['sid']))->select();
         return $this->view->fetch('description',$data);

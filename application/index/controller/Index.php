@@ -27,7 +27,7 @@ class Index extends CommonBase{
             }
             //维修人员
             if($data['userType'] == 2){
-                $user=DB('user')->where('username',$data['username'])->where('password',$data['password'])->find();
+                $user=DB('user')->where('username',$data['username'])->where('password',$data['password'])->where('level',2)->find();
             }
             if(!empty($user)){
                 $user['userType'] = $data['userType'];

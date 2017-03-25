@@ -33,7 +33,7 @@ class ApplyRepair extends CommonBase
             $data=$this->request->param();
             $data['uid']=$this->userinfo['id'];
             $data['picture'] = $info->getSaveName();
-            $data['inputtime'] = date('Y-m-d',time());
+            $data['created_at'] = date('Y-m-d',time());
             if($id=db('apply_repair')->insertGetId($data)){
 //                $list = db('apply_repair')->where(['uid'=>$this->userinfo['id']])->select();
 //                return $this->view->fetch('web@search_repair/list_apply_repair',['list'=>$list,'code'=>2]);
