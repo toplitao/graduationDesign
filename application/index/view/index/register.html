@@ -11,14 +11,14 @@
 {/block}
 
 {block name="title"}
-注册
+快速注册
 {/block}
 
 {block name="content"}
 <div class="container">
-    <form class="form-horizontal register_form"  role="form">
+    <form class="form-horizontal register_form"  role="form" id="register-form">
         <div class="form-group">
-             <label class="control-label col-md-3">账号类型：</label>
+             <label  for="forlevel"class="control-label col-md-3">账号类型：</label>
              <div class="col-md-9">
                  <label class="radio-inline">
                      <input type="radio" name="level" id="usertypeOption1" value="1" checked> 普通用户
@@ -53,21 +53,37 @@
             </div>    
         </div>
         <div class="form-group">
-            <label for="forphone" class="control-label col-md-3">地址：</label>
+            <label for="foraddress" class="control-label col-md-3">地址：</label>
             <div class="col-md-9">
                  <input type="text" class="form-control" id="address" name="address" placeholder="请输入有效联系的地址">
             </div>    
         </div>
-        <div style="display: none;" class="content-hidden">
-	        <div class="form-group">
-	            <label for="forsfz" class="control-label col-md-3">身份证，从业资格证：</label>
-	            <div class="col-md-9">
-					<input id="sfz" name="img[]" type="file" class="file file-loading" multiple='multiple' data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="true" data-show-caption="true">
-	                <input type="hidden" id="img" name="img" />
-	            </div>	
-	        </div>  
-	    </div>    
-        <button type="submit" class="btn btn-primary btn-block"/>注册
+        <div class="form-group content-show">
+            <label for="foremail" class="control-label col-md-3">邮箱：</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="email" name="email" placeholder="请输入有效邮箱地址">
+            </div>
+        </div>
+        <div style="display: none;" class="content-hidden form-group">
+            <label for="forsid" class="control-label col-md-3">请选择驻点：</label>
+            <div class="col-md-9">
+                <select class="form-control" id="sid" name="sid">
+                    <?php foreach($list as $key => $val){?>
+                        <option value="{$val.id}">{$val.station_name}</option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+        <div style="display: none;" class="content-hidden form-group">
+            <div class="form-group">
+                <label for="forimg" class="control-label col-md-3">身份证：</label>
+                <div class="col-md-9">
+                    <input id="sfz" name="img" type="file" class="file file-loading"  data-allowed-file-extensions='["jpg","png","jpeg"]' data-show-preview="false" data-show-caption="ture">
+                    <!--<input type="hidden" id="img" name="img" />-->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" onclick="ajaxSendData('register-form','/index/index/register')"/>注册
     </form>    
 </div>
 <script>
@@ -168,6 +184,26 @@
 	                    }
 	                }
 	            },
+                email: {
+                    message: '请输入有效的邮箱地址',
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱地址不能为空'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                            message: '请输入有效的邮箱地址'
+                        }
+                    }
+                },
+                sid: {
+                    message: '请选择有效的驻点',
+                    validators: {
+                        notEmpty: {
+                            message: '驻点不能为空'
+                        }
+                    }
+                },
 	            sfz: {
 	                message: '请选择上传的身份证，从业资格证',
 	                validators: {
@@ -192,18 +228,17 @@
 	    			postData[this.name] = this.value;
 	    		})
 	    		$.post(url,postData,function(result) {
-	    			console.log(result);
-	                if(result.status == 1)
+	                if(result.status == 200)
 			        {
-			            dialog.success(result.msg,result,url);
+			            return dialog.success(result.msg,result.data.url);
 			        }
-			        if(result.status == 2)
+			        if(result.status == 300)
 			        {
-			            dialog.error(result.msg);
+			            return dialog.error(result.msg);
 			        }
             	}, 'json');
 	    	}else{
-	    		dialog.error("提交失败！");
+	    		return dialog.error("提交失败！");
 	    	}
         });
 	});
@@ -214,44 +249,46 @@
 		var type = $(this).val();
 		if(type == 2){
 			$('.content-hidden').show();
+			$('.content-show').hide();
 		}
 		if(type == 1){
 			$('.content-hidden').hide();
+            $('.content-show').show();
 		}
-	})
+	});
 	/**
 	 * 上传身份证，从业资格证
 	 */
 	$("#sfz").fileinput({
-	    uploadUrl: "/index/index/ajaxUploadImg", 
-	    allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
-	    maxFileSize: 4096,
-	    language: 'zh',
-	    uploadAsync: true,
-	    maxFileCount: 2,
-	    
+	    uploadUrl: "/index/index/ajaxUploadImg",  // 文件上传接口路径
+	    allowedFileExtensions : ['jpg', 'png','jpeg'],  //允许上传的文件后缀名
+	    maxFileSize: 4096, //最大文件大小 4M
+	    language: 'zh', //中文提示信息
+//	    uploadAsync: false,//同步提交文件
+	    maxFileCount: 1, //最大文件数量
+        showUpload: false, //是否显示上传按钮
+
 	});
 	/**
 	 * 上传身份证，从业资格证回调函数
 	 */
-	$("#sfz").on("fileuploaded", function(event, data) {
-        if(data.response.status == 1)
-        {
-            dialog.alert(data.response.msg);
-            var old_img = $("#img").val();
-            var oid_length = old_img.length;
-            var img = data.response.data;
-            if(oid_length <=0){
-            	var new_img = img;
-            }else{
-                var new_img = old_img +','+img;
-            }
-            $("#img").val(new_img);
-        }
-        if(data.response.status == 2)
-        {
-            dialog.alert(data.response.msg);
-        }
-    });
+//	$("#sfz").on("fileuploaded", function(event, data) {
+//        if(data.response.status == 1) {
+//            return dialog.alert(data.response.msg);
+//            var old_img = $("#img").val();
+//            var oid_length = old_img.length;
+//            var img = data.response.data;
+//            if(oid_length <=0){
+//            	var new_img = img;
+//            }else{
+//                var new_img = old_img +','+img;
+//            }
+//            $("#img").val(new_img);
+//        }
+//        if(data.response.status == 2)
+//        {
+//            dialog.alert(data.response.msg);
+//        }
+//    });
 </script>
 {/block}

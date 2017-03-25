@@ -40,6 +40,7 @@
                         <th style="text-align: center">原因</th>
                         <th style="text-align: center">返单号</th>
                         <th style="text-align: center">状态</th>
+                        <th style="text-align: center">操作</th>
                     </tr>
                 </thead>
                 {if !empty($list)}
@@ -52,6 +53,11 @@
                             <td style="text-align: center">{$value.problem}</td>
                             <td style="text-align: center">{$value.back_number}</td>
                             <td style="text-align: center">{$value.status|getStatus}</td>
+                            {if $value.status == 7}
+                            <td style="text-align: center"><button style="cursor: pointer" onclick="feedback({$value.id})">去评价</button> </td>
+                            {else /}
+                            <td style="text-align: center"></td>
+                            {/if}
                         </tr>
                     <?php };?>
                 </tbody>
@@ -60,7 +66,7 @@
                 {if empty($list)}
                     <tbody class="h_active">
                         <tr style="display: table-row;">
-                            <td colspan="6">未查询到记录</td>
+                            <td colspan="7">未查询到记录</td>
                         </tr>
                     </tbody>
                 {/if}
@@ -73,27 +79,15 @@
 </section>
 <!--</div>-->
 <script>
-    $(document).ready(function(){
-        
-    })
     $(".searchtype dd").on('click',function(){
         $(this).addClass("current");
         $(this).siblings().removeClass("current");
         var status = $(this).data('status');
-//        $.ajax({
-//            url :'/user/changeProvince',
-//            type: 'POST',
-//            data: {'province_id':province_id},
-//            success:function(result){
-//                if(result.status == 300){
-//                    return dialog.error(result.msg);
-//                }else{
-//                    $("#reg-date").html(result)
-//                }
-//            }
-//        })
         window.location.href = '/web/search_repair/show_apply_repair/status/'+status;
     })
+    function feedback(id){
+        window.location.href = '/web/feed_back/create_apply_feedback/id/'+id;
+    }
 </script>
 <style>
     a:hover{

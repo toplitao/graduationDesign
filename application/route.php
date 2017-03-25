@@ -22,7 +22,8 @@ use think\Session;
 
 // ];
 Route::get('/register',function(View $view){
-    return $view->fetch('index@index/register');
+    $data['list'] = Db('station')->select();
+    return $view->fetch('index@index/register',$data);
 });
 Route::get('/login',function(View $view){
     return $view->fetch('index@index/login');
