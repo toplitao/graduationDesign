@@ -55,10 +55,10 @@ a *{cursor:pointer}
 ::-moz-placeholder{color:#999;}
 :-ms-input-placeholder{color:#999;}
 
-.tips::-webkit-input-placeholder{color:red;}
-.tips:-moz-placeholder{color:red}
-.tips::-moz-placeholder{color:red;}
-.tips:-ms-input-placeholder{color:red;}
+/*.tips::-webkit-input-placeholder{color:red;}*/
+/*.tips:-moz-placeholder{color:red}*/
+/*.tips::-moz-placeholder{color:red;}*/
+/*.tips:-ms-input-placeholder{color:red;}*/
 
 /*.faultDetails::-webkit-input-placeholder{color:#ff6600;}
 .faultDetails:-moz-placeholder{color:#ff6600}

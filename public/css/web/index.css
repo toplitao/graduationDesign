@@ -27,22 +27,22 @@
     display: inline-block;
     width: 25%;
 }
-.introduce ul li s:nth-child(1){
-    background: url('/media/img/pz.png') no-repeat;
-    background-position: -44px -44px;
-}
-.introduce ul li s:nth-child(2){
-    background: url('/media/img/pz.png') no-repeat;
-    background-position: -44px -44px;
-}
-.introduce ul li s:nth-child(3){
-    background: url('/media/img/pz.png') no-repeat;
-    background-position: -44px 0px;
-}
-.introduce ul li s:nth-child(4){
-    background: url('/media/img/pz.png') no-repeat;
-    background-position: 0px -44px;
-}
+/*.introduce ul li s:nth-child(1){*/
+    /*background: url('/media/img/pz.png') no-repeat;*/
+    /*background-position: -44px -44px;*/
+/*}*/
+/*.introduce ul li s:nth-child(2){*/
+    /*background: url('/media/img/pz.png') no-repeat;*/
+    /*background-position: -44px -44px;*/
+/*}*/
+/*.introduce ul li s:nth-child(3){*/
+    /*background: url('/media/img/pz.png') no-repeat;*/
+    /*background-position: -44px 0px;*/
+/*}*/
+/*.introduce ul li s:nth-child(4){*/
+    /*background: url('/media/img/pz.png') no-repeat;*/
+    /*background-position: 0px -44px;*/
+/*}*/
 .introduce ul li h3{
     color: #333;
     font-weight: bold;

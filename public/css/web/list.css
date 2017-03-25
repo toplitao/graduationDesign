@@ -364,7 +364,7 @@ transform//:rotate(180deg);
 .border-r s{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #00a6ff;border-top:0}
 .searchtype{margin-top:45px;width:100%;color:#e8e8e8;height:55px;border-bottom:#ddd solid 2px;float:left}
 .searchtype dd{font-family:"微软雅黑";float:left}
-.searchtype dd a{padding:0 25px;font-size:16px;height:55px;line-height:55px;color:#333;display:inline-block}
+.searchtype dd a{;font-size:16px;height:55px;line-height:55px;color:#333;display:inline-block}
 .searchtype dd small{font-size:14px}
 .searchtype dd.current a{color:#f60;border-bottom:#f60 solid 2px}
 .searchtype dd a:hover{color:#f60!important;border-bottom:#f60 solid 2px}

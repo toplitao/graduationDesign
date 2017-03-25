@@ -16,7 +16,7 @@
         <article class="wrap clearfix">
             <form class="search emlay" method="post" id="search-form">
                 <input type="hidden" name="orderCategory" id="orderCategory" value="1">
-                <input type="text" name="m" autocomplete="off" placeholder="请输入您的手机号查询您的订单" id="mobile" value="{$moblie}" class="text tips">
+                <input type="text" name="m" autocomplete="off" placeholder="请输入您的手机号查询您的订单" id="mobile" value="{if empty($moblie)}{else /}{$moblie}{/if}" class="text tips">
                 <input type="button" class="sub" value="查询" onclick="ajaxSendData('search-form','/web/search_repair/list_apply_repair')">
             </form>
         </article>
@@ -54,7 +54,11 @@
                             <td style="text-align: center">{$value.back_number}</td>
                             <td style="text-align: center">{$value.status|getStatus}</td>
                             {if $value.status == 7}
-                            <td style="text-align: center"><button style="cursor: pointer;color:white;width:80px;height:30px;" onclick="feedback({$value.id})">去评价</button> </td>
+                                <td style="text-align: center">
+                                    <button style="cursor: pointer;color:white;width:80px;height:30px;" onclick="feedback({$value.id})">去评价</button>
+                                    <button style="cursor: pointer;color:white;width:80px;height:30px;" onclick="check_express({$value.id},{$value.back_number},'{$value.express_code}')">查看物流</button>
+                                </td>
+
                             {elseif $value.status == 6}
                             <td style="text-align: center">
                                 <a href="{$Request.domain}/web/search_repair/confirm_apply_repair?aid={$value.id}"><button style="cursor: pointer;color:white;width:80px;height:30px;background:#00a6ff">确认收货</button></a> 
@@ -88,7 +92,7 @@
         $(this).addClass("current");
         $(this).siblings().removeClass("current");
         var status = $(this).data('status');
-        window.location.href = '/web/search_repair/show_apply_repair/status/'+status;
+        window.location.href = '/web/search_repair/show_apply_repair/status/'+status+'/type/1';
     })
     function feedback(id){
         window.location.href = '/web/feed_back/create_apply_feedback/id/'+id;
@@ -116,6 +120,15 @@
             }
         });
     }
+    $(document).ready(function(){
+        $("#searchtype dd").each(function(){
+            var status = $(this).data('status');
+            if(status == {$status}){
+                $(this).addClass('current');
+                $(this).siblings().removeClass('current');
+            }
+        })
+    });
 </script>
 <style>
     a:hover{

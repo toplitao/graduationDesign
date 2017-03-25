@@ -126,21 +126,27 @@ nav .tel{
     font-size: 1rem;
     width: 20%;
 }
+nav div {
+    float: right;
+    width: 80%;
+}
 nav div ul{
     float: right;
 }
 nav div ul li{
+    font-size: 1rem;
+    padding: 0rem 1rem;
     display: inline-block;
 }
-nav .loginout{
-    font-size: 1rem;
-    float: right;
-}
+/*nav .loginout{*/
+    /*font-size: 1rem;*/
+    /*float: right;*/
+/*}*/
 
-nav div.loginout a{
-    text-decoration: none;
-    cursor: pointer;
-}
+/*nav div.loginout a{*/
+     /*text-decoration: none;*/
+     /*cursor: pointer;*/
+/*}*/
 nav div ul li a{
     display: block;
     color: gray;

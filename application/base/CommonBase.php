@@ -52,4 +52,15 @@ class CommonBase extends Controller{
 
     }
 
+    /**
+     * 通用下载文件操作
+     * @param $filename 文件key值
+     */
+    public function downloadFile($filename){
+        $filename = $this->request->param($filename);
+        header('content-disposition:attachment;filename='.basename($filename));
+        header('content-length:'.filesize($filename));
+        readfile($filename);
+    }
+
 }

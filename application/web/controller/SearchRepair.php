@@ -40,7 +40,7 @@ class SearchRepair extends CommonBase{
         if(!empty(Session::get('moblie'))) {
              $data['moblie'] = Session::get('moblie');
         }else{
-             $data['moblie'] = 0;
+             $data['moblie'] = '0';
         }
         $data['userInfo'] = $this->userinfo;
         $data['status'] = 0;
@@ -50,29 +50,38 @@ class SearchRepair extends CommonBase{
                 $data['status'] = $this->request->param('status');
                 $data['list'] = Db('apply_repair')->where('tel_number',$data['moblie'])->where('status',$status)->select();
             }else{
-                
                 $data['list'] = Db('apply_repair')->where(array('tel_number'=>$data['moblie']))->select();
             }
-        }else{
+        }
+        if($this->request->param('type')){
+            $data['moblie'] = '0';
             if($status){
                 $data['status'] = $this->request->param('status');
                 $data['list'] = Db('apply_repair')->where('uid',$this->userinfo['id'])->where('status',$status)->select();
             }else{
-               
                 $data['list'] = Db('apply_repair')->where(['uid' => $this->userinfo['id']])->select();
-                
             }
         }
         $statusList = Config::get('status');
         $arrayList = array();
-        foreach($statusList as $key => $val){
-            $rs = Db::query('select * from apply_repair where `status` = '.$key.' and `tel_number` = '.$data['moblie']);
-            $count = count($rs);
-            $arrayList[$key] = array('status'=>$key,'count'=>$count);
+        if(empty($this->request->param('type'))){
+            foreach($statusList as $key => $val){
+                $rs = Db::query('select * from apply_repair where `status` = '.$key.' and `tel_number` = '.$data['moblie']);
+                $count = count($rs);
+                $arrayList[$key] = array('status'=>$key,'count'=>$count);
+            }
+        }else{
+            foreach($statusList as $key => $val){
+                $rs = Db::query('select * from apply_repair where `status` = '.$key.' and `uid` = '.$this->userinfo['id']);
+                $count = count($rs);
+                $arrayList[$key] = array('status'=>$key,'count'=>$count);
+            }
         }
+
         $data['arrayList'] = $arrayList;
         return $this->view->fetch('list_apply_repair',$data);
     }
+
     public function confirm_apply_repair(){
         $aid = $this->request->param('aid');
         $time = date("Y-m-d",time());

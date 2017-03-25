@@ -16,7 +16,7 @@
     	<title>{block name="title"}{/block}</title>
     </head>
     <body>
-		<nav>
+		<nav class="clearfix">
 			<div class="content clearfix">
 				<div class="tel clearfix">
 					联系热线：4008-112-112
@@ -27,17 +27,16 @@
 							<li><a href="{$Request.domain}/login">登录</a></li>
 							<li><a href="{$Request.domain}/register">快速注册</a></li>
 					{else /}
-						<div class="loginout">
+						<li>
 							欢迎您：{if $userInfo.userType == 1}{$userInfo.name}{else /}{$userInfo.username}{/if}
+						</li>
+						<li>
 							<a href="/index/index/loginout">退出</a>
-						</div>
+						</li>
+						<li>
+							<a href="/web/search_repair/show_apply_repair/type/1">我的订单</a>
+						</li>
 					{/if}
-<<<<<<< HEAD
-						<li><a href="/web/search_repair/search_apply_repair">我的订单</a> </li>
-=======
-						<li><a href="#">我们的实力</a> </li>
-						<li><a href="/web/search_repair/show_apply_repair">我的订单</a> </li>
->>>>>>> origin/master
 					</ul>
 				</div>
 			</div>			

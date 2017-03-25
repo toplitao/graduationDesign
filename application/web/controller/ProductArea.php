@@ -42,4 +42,5 @@ class ProductArea extends CommonBase{
         return $this->view->fetch('description',$data);
     }
 
+
 }
