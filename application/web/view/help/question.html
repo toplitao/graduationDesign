@@ -18,28 +18,12 @@
             <a href="#" class="list-group-item disabled">
                 帮助中心
             </a>
-            <a href="/web/help/question" class="list-group-item" style="background:#EEEEEE;">常见问题</a>
-            <a href="/web/help/baoyang" class="list-group-item">如何保养</a>
-            <!--<a href="/web/help/about" class="list-group-item">关于我们</a>-->
+            <?php foreach($nav as $key => $val){?>
+                <a href="/web/help/news/id/{$val.id}" class="list-group-item" {if $news_id == $val.id} style="background:#eee;" {/if}>{$val.title}</a>
+            <?php }?>
         </div>
         <div class="col-md-9 right" style="overflow: auto;">
-            <div>
-                <font>维修后出现问题怎么办？</font><br>
-                <h5>本平台维修设备均有质保承诺，符合质保承诺范围情况，都将免费再次维修。</h5>
-            </div>
-            <div>
-                <font>哪些设备机型可以维修？</font><br>
-                <h5>目前极客修只接受苹果iPhone、iPad、华为手机、小米手机、三星手机、乐视手机、魅族手机、vivo手机、OPPO手机，以及中兴努比亚手机等品牌的维修，其他手机、平板等设备维修陆续开通中。</h5>
-            </div>
-            <div>
-                <font>维修来回邮费谁承担？</font><br>
-                <h5>维修设备来回快递费用由本平台承担，但设备经平台修检测后，如果您自愿放弃维修，需要承担回寄给您的快递费和快递物品保价费。。</h5>
-            </div>
-            <div>
-                <font>邮寄过程中出现设备损坏或丢失怎么办？</font><br>
-                <h5>维修设备来回快递费用由本平台承担，但设备经平台修检测后，如果您自愿放弃维如您快递的设备采取了保价邮寄，快递过程中出现损坏或丢失情况，我们将积极配合您向快递公司申请赔偿。如快递时没有保价，本平台不承担任何责任。由平台快递的设备，将统一采取保价邮寄，如在快递过程中出现损坏或丢失情况，本平台将先行赔付。</h5>
-            </div>
-
+            {$list.content}
         </div>
     </div>
 <style>

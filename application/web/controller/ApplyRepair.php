@@ -3,6 +3,7 @@ namespace app\Web\Controller;
 
 use app\base\CommonBase;
 use think\Session;
+use think\Config;
 class ApplyRepair extends CommonBase
 {
     private $userinfo;
@@ -32,7 +33,8 @@ class ApplyRepair extends CommonBase
         if($info){
             $data=$this->request->param();
             $data['uid']=$this->userinfo['id'];
-            $data['picture'] = $info->getSaveName();
+            $domain_name = Config::get('DOMAIN_NAME');
+            $data['picture'] = $domain_name .'/media/img/'.$info->getSaveName();
             $data['created_at'] = date('Y-m-d',time());
             if($id=db('apply_repair')->insertGetId($data)){
 //                $list = db('apply_repair')->where(['uid'=>$this->userinfo['id']])->select();

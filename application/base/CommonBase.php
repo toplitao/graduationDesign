@@ -63,4 +63,13 @@ class CommonBase extends Controller{
         readfile($filename);
     }
 
+    /**
+     * 获取所有新闻栏目分类
+     */
+     public function getAllNews(){
+         $data = db('news')->select();
+         return $data;
+     }
+
+
 }
