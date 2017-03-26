@@ -104,7 +104,7 @@ class Index extends CommonBase
              $inserts = ['oid' => $data['aid'],'status'=> 6, 'charger' => $this->user['username'],'created_at' => $time,'updated_at'=>$time,'uid' => $this->user['id']];
              db('documentary')->insert($inserts);
              //配件出库记录
-             $insert = ['oid' => $data['aid'], 'fid' => $fittings_data[0],'created_at' => $time,'updated_at'=>$time,'number' => $fittings_data[1],'username'=> $this->user['username'],'uid'=>$this->user['id'],'note'=>'修理需要'];
+             $insert = ['oid' => $data['aid'], 'fid' => $fittings_data[0],'created_at' => $time,'updated_at'=>$time,'number' => $fittings_data[1],'username'=> $this->user['username'],'uid'=>$this->user['id'],'node'=>'修理需要'];
              db('fitting_log')->insert($insert);
          }
          if(db('apply_repair')->where('id',$data['aid'])->update(['status' => 4])) {
