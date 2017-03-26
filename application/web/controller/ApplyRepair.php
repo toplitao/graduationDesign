@@ -43,6 +43,7 @@ class ApplyRepair extends CommonBase
 //            $data['picture'] = $domain_name .'/media/img/'.$info->getSaveName();
 //            $data['picture'] = $info->getSaveName();
             $data['created_at'] = date('Y-m-d',time());
+            $data['inputtime'] = date('Y-m-d',time());
             if($id=db('apply_repair')->insertGetId($data)){
                   echo "<script>window.location.href = '/web/search_repair/search_apply_repair'</script>";
             }

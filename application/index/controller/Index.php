@@ -103,7 +103,13 @@ class Index extends CommonBase{
 			}
 			if($result){
 				$url = "/index/index/login";
-				return dr_show_return(200, '注册成功，请登录！',array('url'=>$url));
+				if($this->request->param('level') == 1){
+				    $msg = '注册成功，请登录！';
+                }
+                if($this->request->param('level') == 2){
+                    $msg = '申请成功，请耐心等待审核！';
+                }
+				return dr_show_return(200, $msg,array('url'=>$url));
 			}
 			return dr_show_return(300, '注册失败！');
     	}

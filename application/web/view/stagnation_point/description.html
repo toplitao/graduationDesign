@@ -29,7 +29,9 @@
             <dt>照 &nbsp;&nbsp;片:</dt>
             <dd>
                 <?php foreach($vo['data'] as $kk =>$vv){?>
-                    <img src="{$vv}" width="100%" height="300">
+                    {if $kk == 0}
+                        <img src="{$vv}" width="100%" height="300">
+                    {/if}
                 <?php }?>
             </dd>
         </dl>
